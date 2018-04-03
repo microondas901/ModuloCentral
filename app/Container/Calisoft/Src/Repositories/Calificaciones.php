@@ -78,7 +78,7 @@ class Calificaciones
         });
         $denominador=$denominador->sum();
         //ecuacion final
-        return $numerador/$denominador;
+        return round($numerador/$denominador,3);
     }
 
     public function total($modelacion, $plataforma, $codificacion, $basedatos)
