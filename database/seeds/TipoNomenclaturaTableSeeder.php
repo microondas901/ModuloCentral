@@ -15,13 +15,13 @@ class TipoNomenclaturaTableSeeder extends Seeder
           [
             'nombre' => 'Base de Datos',
             'estandar' => 'BDS_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'BDS_',
             'valor' => '3',
           ],
           [
             'nombre' => 'Esquemas',
             'estandar' => 'SCH_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'SCH_',
             'valor' => '4',
           ],
           [
@@ -33,7 +33,7 @@ class TipoNomenclaturaTableSeeder extends Seeder
           [
             'nombre' => 'Vistas',
             'estandar' => 'VWS_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'VWS_',
             'valor' => '4',
           ],
           [
@@ -51,19 +51,19 @@ class TipoNomenclaturaTableSeeder extends Seeder
           [
             'nombre' => 'Campo Descripcion',
             'estandar' => 'PGS_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'PGS_',
             'valor' => '3',
           ],
           [
             'nombre' => 'Campo ValorMoneda',
             'estandar' => 'CTB_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'CTB_',
             'valor' => '3',
           ],
           [
             'nombre' => 'Campo Observaciones',
             'estandar' => 'PSN_',
-            'nomenclatura' => '',
+            'nomenclatura' => 'PSN_',
             'valor' => '3',
           ],
         ]);
