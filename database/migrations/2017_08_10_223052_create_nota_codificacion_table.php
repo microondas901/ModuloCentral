@@ -21,10 +21,10 @@ class CreateNotaCodificacionTable extends Migration
             $table->integer('FK_ItemsId')->unsigned();
 
             $table->foreign('FK_ScriptsId')->references('PK_id')
-            ->on('TBL_Scripts')->onUpdate('cascade');
+            ->on('TBL_Scripts')->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreign('FK_ItemsId')->references('PK_id')
-            ->on('TBL_ItemsCodificacion')->onUpdate('cascade');
+            ->on('TBL_ItemsCodificacion')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class CreateScriptsTable extends Migration
             
 
             $table->foreign('FK_ProyectoId')->references('PK_id')
-            ->on('TBL_Proyectos')->onUpdate('cascade');
+            ->on('TBL_Proyectos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps('');
         });
     }

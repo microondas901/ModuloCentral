@@ -22,10 +22,10 @@ class CreateItemsEvaluadosTable extends Migration
             $table->integer('FK_itemId')->unsigned();
 
             $table->foreign('FK_scriptId')->references('PK_id')
-            ->on('TBL_Scripts')->onUpdate('cascade');
+            ->on('TBL_Scripts')->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreign('FK_itemId')->references('PK_id')
-            ->on('TBL_ItemsCodificacion')->onUpdate('cascade');
+            ->on('TBL_ItemsCodificacion')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
         });
