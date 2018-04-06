@@ -181,11 +181,22 @@ export default class ReglasEstandar{
     }
 
     guardarCalificacion(peticion){
-        axios.all(peticion)
-        .then(axios.spread((a)=>{
-            toastr.success("Script calificado correctamente");
-        }))
-        .catch(reason => console.log(reason.response.data.errors));
+        $.blockUI({ 
+            message: '<h3><img src="/img/carga.gif" /> </h3>',
+            css : {
+                border: '1px solid black',
+                padding: '10px',
+                'border-radius' : '20px' 
+            },
+            onBlock: function(){
+                         axios.all(peticion)
+                         .then(axios.spread((a)=>{
+                             toastr.success("Script calificado correctamente");
+                             $.unblockUI();
+                         }))
+                         .catch(reason => console.log(reason.response.data.errors));  
+                   }
+        });    
     }
 
     construirPeticion(scriptId){

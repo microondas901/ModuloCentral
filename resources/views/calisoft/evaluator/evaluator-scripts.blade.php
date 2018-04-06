@@ -47,5 +47,6 @@
 @push('functions')
     <script>window.ScriptId='{{ $script->PK_id}}'</script>
     <script src="/assets/global/plugins/jquery.media.js"></script>
+    <script src="/assets/global/plugins/jquery.blockui.min.js"></script>
     <script src="/js/evaluator-script.js"></script>
 @endpush

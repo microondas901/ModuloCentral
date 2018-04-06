@@ -38,10 +38,8 @@ new Vue({
                 axios.post('/api/scripts/preview/' + url).then(res => {
                      this.ReglasEst.evaluarEstandar(res.data.code, window.ScriptId, this.items);
                 });
-                //toastr.success("Script calificado correctamente");
                 this.evaluado = true;
-            }
-
+            } 
         },
     },
 
