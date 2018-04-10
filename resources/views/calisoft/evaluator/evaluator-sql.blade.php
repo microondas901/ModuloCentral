@@ -200,16 +200,14 @@
                                     
                                 </div>
                                 <div class="modal-body" >
-                                <h4 class="modal-title" align="center"> <b>¿Está seguro de calificar la nomenclatura SQL de la base de datos del proyecto: "{{$proyecto->nombre}}"?</b></h4>
+                                <h4 class="modal-title" align="center"> <b>El proyecto: "{{$proyecto->nombre}}", Fue calificado correctamente.</b></h4>
                                 </div>
                                 
                                 <div class="modal-footer">
                                     <a href="/proyectos/{{$proyecto->PK_id}}/basedatos"><button type="button"  class="btn green-jungle center-block">
                                         <i class="fa fa-arrow-circle-right"></i>
-                                        ¡Calificar!
+                                        ¡Aceptar!
                                     </button></a> 
-
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>  
                                 </div>
                             </div>
 
