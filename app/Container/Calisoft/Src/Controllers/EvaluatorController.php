@@ -47,6 +47,16 @@ class EvaluatorController extends Controller
     }
     public function basedatos(Proyecto $proyecto){
 
+        return view('calisoft.evaluator.evaluator-basedatos',compact('proyecto'));
+    }
+
+    public function escenario(Proyecto $proyecto, CasoPrueba $casoPrueba)
+    {
+        return view('calisoft.evaluator.evaluator-escenario', compact('proyecto','casoPrueba'));
+    }
+
+    public function analizesql(Proyecto $proyecto)
+    {
         $nomenclaturabd = NomenclaturaBd::
                     select('TBL_TipoNomenclatura.nomenclatura')
                           ->get();
@@ -145,14 +155,10 @@ class EvaluatorController extends Controller
             DB::update($sql, array($total8, $acertadas8,9,  $proyecto->PK_id));
 
 
-        return view('calisoft.evaluator.evaluator-basedatos',compact('proyecto'),[
+        return view('calisoft.evaluator.evaluator-sql',compact('proyecto'),[
             'nomenclaturabd' => $nomenclaturabd,
           ]);
     }
 
-    public function escenario(Proyecto $proyecto, CasoPrueba $casoPrueba)
-    {
-        return view('calisoft.evaluator.evaluator-escenario', compact('proyecto','casoPrueba'));
-    }
     
 }
