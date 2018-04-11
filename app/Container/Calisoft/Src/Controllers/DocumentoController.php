@@ -31,11 +31,13 @@ class DocumentoController extends Controller
 
     public function store(DocumentosStoreRequest $request)
     {
+     
         $proyecto = $request->user()->proyectos()->first(); //obtiene el proyecto del usuario logeado
         $doc = new Documento(); //inicializa el documento a guardar
         $file = $request->file('file'); //obtiene el archivo
         $doc->nombre = $file->getClientOriginalName(); //nombre del archivp
         $doc->url = $file->store('/', 'documentos'); //guarda el archivo
+        
         $doc->FK_TipoDocumentoId = $request->FK_TipoDocumentoId; //asigna el tipo
         $proyecto->documentos()->save($doc); //guarda y asigna el documento al proyecto
         return $doc;

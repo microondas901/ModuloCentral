@@ -67,8 +67,13 @@
                                         </tbody>
                             </table>
 
-                            <span v-if="caso.formulario == ''" class="label label-sm label-danger"> El estudiante no a subido el Caso Prueba </span>
+                            <div v-if="caso.limite < dia && caso.formulario == ''">
+                            <span  class="label label-sm label-danger"> El estudiante se ha pasado de la fecha límite para subir este caso prueba.</span>
                             
+                            </div>
+                            <div v-else>
+                                <span v-if="caso.formulario == ''" class="label label-sm label-danger"> El estudiante no a subido el Caso Prueba </span>
+                            </div>
                         </div>
                     </div>
                 </div>          
@@ -96,7 +101,7 @@
                                 
                                     <label >Límite</label>
                                     <div >
-                                        <input type="date" name="limite" v-model="newCasoPrueba.limite" class="form-control" required>    
+                                        <input id="fecha" type="date" name="limite" v-model="newCasoPrueba.limite" class="form-control" required >    
                                         <!-- /input-group -->
                                     </div>
                                 
@@ -133,6 +138,31 @@
 
     
 @push('functions')
+    <script>
+    
+
+        var dt = new Date();
+        // Validación de html para fechas limites.
+        var m = dt.getMonth()+1;
+        var d = dt.getDate();
+        var y = dt.getFullYear();
+
+        if (m<10 && d>=10){
+            document.getElementById("fecha").min = y +'-0'+ m + '-' + d;
+        }
+        if(d<10 && m>=10){
+            document.getElementById("fecha").min = y +'-'+ m + '-0' + d;
+        }
+        if(m<10 && d<10){
+            document.getElementById("fecha").min = y +'-0'+ m + '-0' + d;
+        }
+        if(m>=10 && d>=10){
+            document.getElementById("fecha").min = y +'-'+ m + '-' + d;
+        }
+        
+
+    </script>
+
     <script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
             

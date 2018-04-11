@@ -25,11 +25,11 @@ class CasoPruebaStoreRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:50',
-            'proposito'=> 'required|string|max:50',
-            'alcance'=> 'required|string',
-            'resultado_esperado'=> 'required|string|max:50',
-            'criterios' => 'required|string',
-            'prioridad'=> 'required|string',
+            'proposito'=> 'required|string|max:200',
+            'alcance'=> 'required|string|max:200',
+            'resultado_esperado'=> 'required|string|max:200',
+            'criterios' => 'required|string|max:200',
+            'prioridad'=> 'required|string|max:200',
             'limite' => 'required',
             'FK_ProyectoId'=> 'required|integer',
         ];

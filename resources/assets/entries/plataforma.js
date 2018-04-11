@@ -26,12 +26,34 @@ new Vue({
             formErrorsUpdate: {},
             proyectoId: window.proyectoId,
             modalState: false,
-            selected: {}
+            selected: {},
+            dia: {},
         }
     },
     created() {
         axios.get(`/api/proyectos/${window.proyectoId}/plataforma`)
                 .then(res => this.casoPrueba = res.data);
+
+        // Obtener el día de hoy.
+        var dt = new Date();
+        var m = dt.getMonth()+1;
+        var d = dt.getDate();
+        var y = dt.getFullYear();
+
+        if (m<10 && d>=10){
+            this.dia = y +'-0'+ m + '-' + d;
+        }
+        if(d<10 && m>=10){
+            this.dia = y +'-'+ m + '-0' + d;
+        }
+        if(m<10 && d<10){
+            this.dia = y +'-0'+ m + '-0' + d;
+        }
+        if(m>=10 && d>=10){
+            this.dia = y +'-'+ m + '-' + d;
+        }
+
+        // FIN Obtener el día de hoy.
                 
     },
     methods: {

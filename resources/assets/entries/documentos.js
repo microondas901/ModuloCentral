@@ -56,7 +56,7 @@ let vm = new Vue({
 
 Dropzone.options.myAwesomeDropzone = {
     uploadMultiple: false,
-    maxFilezise: 1000,
+    maxFilezise: 500,
     acceptedFiles: '.pdf',
     success: function (a, doc) {
         vm.$data.documentos.push(doc);
@@ -65,6 +65,7 @@ Dropzone.options.myAwesomeDropzone = {
     },
     error(file, message, xhr) {
         this.removeFile(file);
-        toastr.error('El tipo de documento es obligatorio');
+        console.log(xhr);
+        toastr.error(message.errors.file);
     }
 };

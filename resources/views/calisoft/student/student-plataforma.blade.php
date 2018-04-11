@@ -26,13 +26,13 @@
                         
                         <tbl-caso :caso="caso"></tbl-caso>
                         
-                        <div class="panel-body" v-if="caso.formulario == ''">
+                        <div class="panel-body" v-if="caso.formulario == '' && caso.limite >= dia">
                             <div class="form-group">
                                 <div class="row"> 
                                     <div class="col-sm-6">
                                         <textarea-input name="formulario" :error="formErrorsUpdate.formulario" 
                                                         v-model="fillCasoPrueba.formulario" label="Formulario" 
-                                                        maxlength="500" :id="'paste'+caso.PK_id" >
+                                                        maxlength="20000" :id="'paste'+caso.PK_id" >
                                         </textarea-input>
                                     </div>
                                 </div>
@@ -42,16 +42,14 @@
                                             <i class="fa fa-message"></i>Siguiente
                                         </button>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <a href="javascript:;" class="btn green-steel mt-clipboard" data-clipboard-paste="true" :data-paste-target="'#paste'+caso.PK_id">
-                                            <i class="icon-note"></i> Pegar Json</a>
-                                    </div>
+                                    
                                 </div>   
                             </div>
                         </div>
                         
                         
                     </div>
+                    <span v-if="caso.limite < dia && caso.formulario == ''" class="label label-sm label-danger"> Se ha pasado de la fecha límite para subir este caso prueba.</span>
                 </div>          
             </div>
             
@@ -98,7 +96,7 @@
 
 @endpush
 @push('functions')
-    
+
     <script>window.proyectoId = {{ $proyecto->PK_id }};</script>
     <script src="/js/plataforma-student.js"></script>
   
