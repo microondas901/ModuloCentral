@@ -43,7 +43,7 @@
                                 $mensajeEncontradas = "Palabras Encontradas: ";
                                 $mensajePropias = "Palabras Encontradas Propias del SQL: ";
                                 $mensajeLineas = "Las palabras estan en la linea: ";
-                                $importantesBD = array('BASE DATOS','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'klkkñlk', 'jknkjnkjn', 'jnojhojuoi');
+                                $importantesBD = array('BASE DATOS','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'PGS_', 'CTB_', 'PSN_');
                                 $estandarBD = array();
 
                                 foreach($nomenclaturabd as $nomenbds)
@@ -224,5 +224,5 @@
     <script>window.archivoId = "{{ $proyecto->sql->PK_id }}"</script>
     <script src="/assets/global/plugins/jquery.media.js"></script>
     <script src="/js/base-datos.js"></script>
-    <script src="/js/modal.js"></script>
+    <script src="/assets/apps/scripts/modal.js"></script>
 @endpush
