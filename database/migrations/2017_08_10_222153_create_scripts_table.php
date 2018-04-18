@@ -19,11 +19,11 @@ class CreateScriptsTable extends Migration
             $table->text('comentario')->nullable();
             $table->enum('estado', ['sin calificar','calificado'])->default('sin calificar');
             $table->integer('FK_ProyectoId')->unsigned();
+            $table->timestamps();
             
 
             $table->foreign('FK_ProyectoId')->references('PK_id')
             ->on('TBL_Proyectos')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps('');
         });
     }
 
