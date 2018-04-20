@@ -31,8 +31,7 @@ new Vue({
         }
     },
     created() {
-        axios.get(`/api/proyectos/${window.proyectoId}/plataforma`)
-                .then(res => this.casoPrueba = res.data);
+        this.fetch()
 
         // Obtener el día de hoy.
         var dt = new Date();
@@ -73,13 +72,13 @@ new Vue({
             this.newCasoPrueba.FK_ProyectoId = this.proyectoId;
             axios.post('/api/casoPrueba', this.newCasoPrueba)
                 .then(response => {
-                    this.casoPrueba.push(response.data);
+                    this.fetch();
                     this.formErrors = {};
                     this.newCasoPrueba = {};
                     $("#crear-caso").modal("hide");
                     toastr.success('Caso Prueba Creado Correctamente');
                 })
-                .catch(error => this.formErrors = error.response.data);
+                .catch(error => this.formErrors = error.response.data.errors);
         },
         destroy(caso) {
             axios.delete('/api/casoPrueba/' + caso.PK_id).then(() => {
@@ -87,5 +86,9 @@ new Vue({
                 toastr.info('Caso prueba eliminado correctamente');
             });
         },
+        fetch() {
+            axios.get(`/api/proyectos/${window.proyectoId}/plataforma`)
+                .then(res => this.casoPrueba = res.data);
+        }
     }
 })

@@ -8,7 +8,7 @@
         ])
 
         <div id="app">
-            <input-list :formulario="json" :caso-prueba-id="casoPruebaId"></input-list>
+            <input-list :formulario="json" :caso-prueba-id="casoPruebaId" :npruebas="10"></input-list>
         </div>
         
             

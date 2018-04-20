@@ -3,10 +3,10 @@
         <div class="dashboard-stat2 ">
             <div class="display">
                 <div class="number">
-                    <h3 v-if="totales == 30" class="font-green-sharp">
+                    <h3 v-if="totales == npruebas" class="font-green-sharp">
                         <span data-counter="counterup" :data-value="totales" v-text="totales"></span>
                     </h3>
-                    <h3 v-if="totales != 30" class="font-red-haze">
+                    <h3 v-if="totales != npruebas" class="font-red-haze">
                         <span data-counter="counterup" :data-value="totales" v-text="totales"></span>
                     </h3>
                         <small>Barra de proceso</small>
@@ -17,11 +17,11 @@
             </div>
             <div class="progress-info">
                 <div class="progress">
-                    <span v-if="totales == 30" :style="{ width: porcentaje.toString() + '%' }" class="progress-bar progress-bar-danger green-sharp">
-                        <span class="sr-only">85% change</span>
+                    <span v-if="totales == npruebas" :style="{ width: porcentaje.toString() + '%' }" class="progress-bar progress-bar-danger green-sharp">
+                        
                     </span>
-                    <span v-if="totales != 30" :style="{ width: porcentaje.toString() + '%' }" class="progress-bar progress-bar-danger red-haze">
-                        <span class="sr-only">85% change</span>
+                    <span v-if="totales != npruebas" :style="{ width: porcentaje.toString() + '%' }" class="progress-bar progress-bar-danger red-haze">
+                        
                     </span>
                 </div>
                 <div class="status">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <form>
+        <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover" id="sample">
                 <thead>
                     <tr>
@@ -68,18 +68,25 @@
                     </tr>
                 </tfoot>
             </table>
-        </form>
-        <div class="row" v-if="totales<30">
-            <div class="col-md-4">
+        </div>
+        <div class="row" v-if="totales < npruebas">
+            <div class="col-sm-4">
+                <button class="btn blue-hoki btn-block" @click="evaluar" title="Cargar y Guardar Automaticamente">
+                    <i class="fa fa-android fa-2x pull-left"></i> Modo Asistido
+                </button>
+            </div>
+            <div class="col-sm-4">
                 <button class="btn green-jungle btn-block" @click="cargar()">
-                    <i class="fa fa-plus"></i> Cargar prueba   
+                    <i class="fa fa-plus fa-2x pull-left"></i> Cargar prueba   
                 </button>
             </div>
-            <div class="col-md-4 col-md-offset-4" v-if="values.length">
+            
+            <div class="col-sm-4" v-if="values.length">
                 <button class="btn btn-block btn-primary" @click="guardar()">
-                    <i class="fa fa-save"></i>GUARDAR PRUEBA
+                    <i class="fa fa-save fa-2x"></i>GUARDAR PRUEBA
                 </button>
             </div>
+            <full-loading :show="cargando"/>
         </div>
     </section>
 
@@ -91,8 +98,10 @@ import {
   parseInputs
 } from "../../classes/plataforma/input-attributes";
 import { mean } from "lodash";
+import FullLoading from "../utils/full-loading";
 export default {
-  props: ["formulario", "casoPruebaId"],
+  props: ["formulario", "casoPruebaId", "npruebas"],
+  components: { FullLoading },
   data() {
     return {
       values: [],
@@ -100,25 +109,25 @@ export default {
       selected: -1,
       valido: 0,
       totales: 0,
-      porcentaje: 0
+      porcentaje: 0,
+      cargando: false,
+      alert: true
     };
   },
-  created() { 
-        this.refresh();       
-        
-    },
+  created() {
+    this.refresh();
+  },
   methods: {
     refresh() {
-        axios.get(`/pruebasCasoPrueba/${window.casoPruebaId}`)
-        .then(res => {this.totales = res.data,
-                this.porcentaje = Math.round(((res.data * 100) / 30));
-        });
-        //this.porcentaje= (this.totales + 100);
+      axios.get(`/pruebasCasoPrueba/${window.casoPruebaId}`).then(res => {
+        this.totales = res.data;
+        this.porcentaje = Math.round(res.data * 100 / this.npruebas);
+      });
     },
     cargar() {
       this.select();
 
-      axios
+      return axios
         .post("/api/testing", {
           inputs: this.formulario.map(input => input.type),
           tipo: this.tipos[this.selected]
@@ -144,17 +153,30 @@ export default {
         entrada: this.values[index],
         estado: this.resultados[index]
       }));
-      axios
+      return axios
         .post("/api/testing/save/" + this.casoPruebaId, {
           contexto: contexto,
           calificacion: this.calificacion
         })
         .then(() => {
-            toastr.success('Prueba Guardada')
-            this.refresh();
-            this.values = [];
-            this.errors.clear()
+          this.alert && toastr.success("Prueba Guardada");
+          this.refresh();
+          this.values = [];
+          this.errors.clear();
         });
+    },
+    async evaluar() {
+        this.cargando = true
+        this.alert = false
+        let total = this.totales;
+        while(total < this.npruebas) {
+            await this.cargar()
+            await this.guardar()
+            total++
+        }
+        this.cargando = false
+        this.alert = false
+        toastr.info("Evaluación Asistida Completada")
     }
   },
   computed: {
