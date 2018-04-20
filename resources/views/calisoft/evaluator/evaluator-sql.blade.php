@@ -62,7 +62,7 @@
                                 {
 
                                     $repeticion = substr_count($leerArchivo, $i); 
-                                    $totalImpostantesBD += substr_count($leerArchivo, $i); 
+                                    //$totalImpostantesBD += is_numeric($repeticion); 
                                     $palabra_infos .= "$repeticion,";
                                     $array = explode(",", $palabra_infos);
                                     $palabras .= "$i ($repeticion)<br>";
@@ -80,7 +80,7 @@
                                 {
 
                                     $repeticiones = substr_count($leerArchivo, $k); 
-                                    $totalEstandarBD += substr_count($leerArchivo, $k);
+                                    //$totalEstandarBD += is_numeric($repeticiones);
                                     $palabra_info .= "$repeticiones,"; 
                                     $array1 = explode(",", $palabra_info);
                                     $palabra .= "$k ($repeticiones)<br>"; 
@@ -109,11 +109,11 @@
                                     <td align="center"><?php echo $palabrasAlone; 
                                     echo "<br><b>Total Palabras Reservadas del SQL: </b><br>";?></td>
                                     <td align="center"><?php echo $palabrasRepeat; 
-                                    echo "<br>"."<b>".$totalImpostantesBD."</b>";?></td>
+                                    echo "<br>"."<b>aqui va la sumatoria</b>";?></td>
                                     <td align="center"><?php echo $palabraAlone; 
                                     echo "<br><b>Total Palabras Encontradas del SQL: </b><br>";?></td>
                                     <td align="center"><?php echo $palabraRepeat; 
-                                    echo "<br>"."<b>".$totalEstandarBD."</b>";?></td>
+                                    echo "<br>"."<b>aqui va la sumatoria</b>";?></td>
                                     </tr>
                     
                                 </tbody>

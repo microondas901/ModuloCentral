@@ -87,7 +87,6 @@ class EvaluatorController extends Controller
         {
 
             $repeticion = substr_count($leerArchivo, $i); 
-            $totalImpostantesBD += substr_count($leerArchivo, $i); 
             $palabra_infos .= "$repeticion,";
             $array = explode(",", $palabra_infos);
             $palabras .= "$i ($repeticion)<br>";
@@ -98,7 +97,6 @@ class EvaluatorController extends Controller
         foreach ($estandarBD as $k) 
         {
             $repeticiones = substr_count($leerArchivo, $k); 
-            $totalEstandarBD += substr_count($leerArchivo, $k);
             $palabra_info .= "$repeticiones,"; 
             $array1 = explode(",", $palabra_info);
             $palabra .= "$k ($repeticiones)<br>"; 
