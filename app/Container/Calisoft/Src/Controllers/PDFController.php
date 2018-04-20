@@ -27,7 +27,7 @@ class PDFController extends Controller
     {
         $documentos = $proyecto->documentos()
             ->with('tipo', 'evaluaciones.componente', 'evaluaciones.evaluador')->get();
-        $total = (new Calificaciones())->modelacion($documentos);
+        $total = (new Calificaciones($proyecto))->modelacion();
         $pdf = PDF::loadView('pdf.modelacion', compact('proyecto', 'documentos', 'total'));
         return $pdf->stream('modelacion.pdf');
     }

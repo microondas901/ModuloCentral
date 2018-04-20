@@ -41,7 +41,7 @@ new Vue({
         //crea el componente del documento
         store(componente){
             componente.FK_TipoDocumentoId = this.documentoId;
-            axios.post('/api/componentes/', componente)
+            axios.post('/api/componentes', componente)
                 .then(res => {
                     this.componentes.push(res.data);
                     this.newComponente = this.getSchema();

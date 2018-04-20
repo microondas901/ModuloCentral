@@ -71,7 +71,7 @@ export default {
                 .catch(error => this.error = error.response.data.nombre[0]);
         },
         destroy(item){
-            axios.delete(this.rest + item.PK_id)
+            axios.delete(this.rest + '/' + item.PK_id)
                 .then(() => {
                     this.items = this.items.filter(value => value != item);
                 });
@@ -80,7 +80,7 @@ export default {
             this.editable = Object.assign({}, item);
         },
         update(){
-            axios.put(this.rest + this.editable.PK_id, this.editable)
+            axios.put(this.rest + '/' + this.editable.PK_id, this.editable)
                 .then(res => {
                     this.items = this.items.map(value => {
                         return value.PK_id == this.editable.PK_id ? this.editable : value;

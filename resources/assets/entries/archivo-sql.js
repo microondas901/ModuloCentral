@@ -28,7 +28,7 @@ new Vue({
     },
     methods: {
         refresh() {
-            axios.get('/api/sql/')
+            axios.get('/api/sql')
                 .then(response => this.sqls = response.data);
         },
         destroy(sql) {

@@ -216,7 +216,7 @@ export default class ReglasEstandar{
         let peticion = [];
         let longitud = this.itemsEvaluados.length;
         for(let i=0; i < longitud;i++){
-            peticion.push(axios.post('/api/itemsEvaluados/',{ 
+            peticion.push(axios.post('/api/itemsEvaluados',{ 
                 atributo : this.itemsEvaluados[i].atributo,
                 fila : this.itemsEvaluados[i].fila,
                 calificacion : this.itemsEvaluados[i].calificacion,
