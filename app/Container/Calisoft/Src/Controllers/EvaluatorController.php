@@ -68,7 +68,7 @@ class EvaluatorController extends Controller
         $totalImpostantesBD ="";
         $totalEstandarBD ="";
   
-        $importantesBD = array('BASE DATOS','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'klkkñlk', 'jknkjnkjn', 'jnojhojuoi');
+        $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'klkkñlk', 'jknkjnkjn', 'jnojhojuoi');
         $estandarBD = array();
 
         foreach($nomenclaturabd as $nomenbds)

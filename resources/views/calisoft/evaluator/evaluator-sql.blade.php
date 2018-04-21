@@ -43,7 +43,7 @@
                                 $mensajeEncontradas = "Palabras Encontradas: ";
                                 $mensajePropias = "Palabras Encontradas Propias del SQL: ";
                                 $mensajeLineas = "Las palabras estan en la linea: ";
-                                $importantesBD = array('BASE DATOS','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'PGS_', 'CTB_', 'PSN_');
+                                $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'PGS_', 'CTB_', 'PSN_');
                                 $estandarBD = array();
 
                                 foreach($nomenclaturabd as $nomenbds)
