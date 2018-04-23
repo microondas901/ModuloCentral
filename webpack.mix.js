@@ -39,3 +39,4 @@ mix
     .js('resources/assets/entries/escenario.js', 'public/js')
     .js('resources/assets/entries/evaluacion-modelado.js', 'public/js')
     .js('resources/assets/entries/base-datos.js', 'public/js')
+    .extract(['vue', 'vee-validate', 'laravel-echo', 'axios'])

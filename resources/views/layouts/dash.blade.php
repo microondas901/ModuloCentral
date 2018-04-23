@@ -24,6 +24,8 @@
  @endpush
 
 @push('plugins')
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendor.js"></script>
     <script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
     <script>
         Object.assign(toastr.options, {
