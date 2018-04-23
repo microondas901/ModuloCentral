@@ -10,7 +10,7 @@
         
         <div class="form-group form-md-radios">
             <label>OBLIGATORIO</label>
-            <bs-switch ref="switch" id="required" label="requerido" v-model="componente.required"></bs-switch>
+            <bs-switch ref="switch" :id="id" label="requerido" v-model="componente.required"></bs-switch>
         </div>
         
         <textarea-input name="descripcion" label="Descripción" v-model="componente.descripcion" 
@@ -35,22 +35,34 @@ export default {
     components: { BsSwitch, TextInput, TextareaInput },
     props: {
         editable: Object,
-        submitText: { type: String, default: "Guardar" }
+        submitText: { type: String, default: "Guardar" },
+        id: { type: String, required: true }
     },
     data() {
         return {
-            componente: {}
+            componente: this.schema()
         }
     },
     methods: {
         submit(){
             this.$emit("submit", this.componente)
+        },
+        schema() {
+            return {
+                nombre: "",
+                required: false,
+                descripcion: "",
+            }
+        },
+        reset() {
+            this.componente = this.schema()
+            setTimeout(() => this.errors.clear())
         }
     },
     watch: {
         editable(val) {
             this.$refs.switch.mount()
-            this.componente = _.clone(val)
+            this.componente = val ? _.clone(val) : this.schema()
         } 
     }
 }

@@ -11,7 +11,7 @@
                 <form class="form-inline" @submit.prevent="store()">
                     <div class="input-group">
                         <span class="input-group-addon">Nombre</span>
-                        <input type="text" name="nombre" class="form-control" v-model="tdocForm.nombre" required maxlength="20">
+                        <input type="text" name="nombre" class="form-control" v-model="tdocForm.nombre" required maxlength="50">
                     </div>
                     <div class="form-group">
                         <bs-switch id="required" label="requerido" v-model="tdocForm.required">
@@ -57,7 +57,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Nombre</span>
                                     <input type="text" name="nombre" class="form-control"
-                                        v-model="tdocEdit.nombre" required maxlength="20">
+                                        v-model="tdocEdit.nombre" required maxlength="50">
                                 </div>
                                 <div class="form-group">
                                     <bs-switch id="edit-required" label="requerido" v-model="tdocEdit.required">

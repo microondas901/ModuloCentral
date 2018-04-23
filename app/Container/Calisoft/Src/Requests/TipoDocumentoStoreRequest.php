@@ -24,7 +24,7 @@ class TipoDocumentoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:20|unique:TBL_TiposDocumento',
+            'nombre' => 'required|string|max:50|unique:TBL_TiposDocumento',
             'required' => 'sometimes|nullable|boolean'
         ];
     }

@@ -14,7 +14,7 @@ class PDFController extends Controller
 
     function __construct()
     {
-        $this->middleware('can:see_evaluations,App\Proyecto')->except('total');
+        $this->middleware('can:see_evaluations,App\Proyecto')->except('total', 'usuarios');
         //$this->middleware('can:see_global,proyecto')->only('total');
     }
     /**
@@ -29,7 +29,7 @@ class PDFController extends Controller
             ->with('tipo', 'evaluaciones.componente', 'evaluaciones.evaluador')->get();
         $total = (new Calificaciones($proyecto))->modelacion();
         $pdf = PDF::loadView('pdf.modelacion', compact('proyecto', 'documentos', 'total'));
-        return $pdf->stream('modelacion.pdf');
+        return $pdf->download('modelacion.pdf');
     }
 
     /**
@@ -40,7 +40,7 @@ class PDFController extends Controller
     public function usuarios()
     {
         $pdf = PDF::loadView('pdf.usuarios', ['usuarios' => User::limit(50)->get()]);
-        return $pdf->stream('usuarios.pdf');
+        return $pdf->download('usuarios.pdf');
     }
     public function scripts(Proyecto $proyecto )
     {
@@ -48,7 +48,7 @@ class PDFController extends Controller
         $calificacion=new Calificaciones($proyecto);
         $nota=$calificacion->codificacion();
         $pdf = PDF::loadView('pdf.codificacion', compact('proyecto', 'scripts','nota'));
-        return $pdf->stream('codificacion.pdf');
+        return $pdf->download('codificacion.pdf');
         
     }
 
@@ -62,14 +62,14 @@ class PDFController extends Controller
         $promedio = round($promedio);
         $pdf = PDF::loadView('pdf.basedatos', compact('proyecto', 'sql','promedio'));
         //return view('pdf.basedatos', compact('proyecto', 'sql'));
-        return $pdf->stream('basedatos.pdf');
+        return $pdf->download('basedatos.pdf');
     }
 
     public function plataforma(Proyecto $proyecto) {
         $casos = $proyecto->casoPruebas()->with('pruebas')->get();
         $total = round($casos->avg('calificacion'));
         $pdf = PDF::loadView('pdf.plataforma', compact('casos', 'total', 'proyecto'));
-        return $pdf->stream('plataforma.pdf');
+        return $pdf->download('plataforma.pdf');
     }
 
     public function total(Proyecto $proyecto) {
@@ -77,6 +77,6 @@ class PDFController extends Controller
         $payload = $calificaciones->global();
         $payload['proyecto'] = $proyecto;
         $pdf = PDF::loadView('pdf.global', $payload);
-        return $pdf->stream('resultados.pdf');
+        return $pdf->download('resultados.pdf');
     }    
 }

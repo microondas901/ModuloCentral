@@ -16,7 +16,6 @@ new Vue({
     data() {
         return {
             componentes: [],
-            newComponente: this.getSchema(),
             documentoId: window.documentId,
             fillComponente: {},
             formErrors: {},
@@ -44,7 +43,7 @@ new Vue({
             axios.post('/api/componentes', componente)
                 .then(res => {
                     this.componentes.push(res.data);
-                    this.newComponente = this.getSchema();
+                    this.$refs.createForm.reset()
                     $("#crear-componente").modal("hide");
                     toastr.info('Componente subido correctamente');
                 })
@@ -65,24 +64,12 @@ new Vue({
         },
 
         //elimina el componente
-        destroy(componentes) {
-            axios.delete('/api/componentes/' + componentes.PK_id)
+        destroy(componente) {
+            axios.delete('/api/componentes/' + componente.PK_id)
                 .then(() => {
-                    this.componentes = this.componentes.filter(value => value != componentes);
+                    this.componentes = this.componentes.filter(value => value.PK_id != componente.PK_id);
                     toastr.info('Componente eliminado correctamente');
                 });
         },
-
-        //esquema de un componente de documento
-        getSchema() {
-            return {
-                nombre: "",
-                required: false,
-                descripcion: "",
-            }
-        },
-
-
-
     }
 });

@@ -46,14 +46,16 @@
 
             <!--Comienzo Modal de creación -->
             <modal id="crear-componente" title="Crear Componentes">
-                <component-form ref="createForm" @submit="store"></component-form>
+                <component-form id="createF" ref="createForm" @submit="store"></component-form>
             </modal>
             <!-- Fin de Modal de creación -->
 
             <!--Comienzo Modal de edicion -->
             <modal id="editar-componentes" title="Editar Componente">
-                <component-form v-if="fillComponente" ref="editForm" @submit="update" :editable="fillComponente">
-                </component-form>  
+                <section v-if="fillComponente">
+                    <component-form id="editF" ref="editForm" @submit="update" :editable="fillComponente">
+                    </component-form>
+                </section>
             </modal>
 
 
