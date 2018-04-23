@@ -44,7 +44,7 @@ let vm = new Vue({
                     $("#crear-categoria").modal("hide");
                     toastr.success('Categoría creada correctamente');
                 })
-                .catch(error => this.formErrors = error.response.data);
+                .catch(error => this.formErrors = error.response.data.errors);
         },
         openEditModal(categoria) {
             this.fillCategoria = Object.assign({}, categoria);
@@ -65,7 +65,7 @@ let vm = new Vue({
                     $("#editar-categoria").modal("hide");
                     toastr.info('Categoría editada correctamente');
                 })
-                .catch(error => this.formErrorsUpdate = error.response.data);
+                .catch(error => this.formErrorsUpdate = error.response.data.errors);
         },
 
         destroy(categoria) {

@@ -24,7 +24,7 @@ class ProyectoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre'                    => sprintf('string|min:5|unique:TBL_Proyectos,nombre,%d,PK_id', $this->PK_id),
+          'nombre'                    => sprintf('string|between:5,30|unique:TBL_Proyectos,nombre,%d,PK_id', $this->PK_id),
           'FK_CategoriaId'            => 'integer',
           'FK_SemilleroId'            => 'integer',
           'FK_GrupoDeInvestigacionId' => 'integer',

@@ -33,7 +33,7 @@ class ComponenteController extends Controller
             'nombre' => $request->nombre,
             'descripcion'=> $request->descripcion,
             'FK_TipoDocumentoId'=> $request->FK_TipoDocumentoId,
-            'required'=> $request->required
+            'required'=> $request->required or false
         ]);
     }
 

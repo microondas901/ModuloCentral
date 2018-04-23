@@ -18,7 +18,8 @@ new Vue({
             deleteUser: {},
             paginator: new Paginator(),
             search: "",
-            modal: false
+            modal: false,
+            deleteModal: false
         }
     },
     created() {
@@ -35,13 +36,13 @@ new Vue({
         },
         openDeleteModal(user) {
             this.deleteUser = user;
-            $('#eliminar-usuarios').modal("show");
+            this.deleteModal = true;
         },
         destroy(user) {
             axios.delete('/api/usuarios/' + user.PK_id)
                 .then(() => {
                     this.usuarios = this.paginator.data = this.usuarios.filter(value => value != user);
-                    $('#eliminar-usuarios').modal("hide");
+                    this.deleteModal = false;
                     toastr.info('Usuario Eliminado Correctamente');
                 });
         },
@@ -52,7 +53,7 @@ new Vue({
             this.paginator.data = this.searchBy(this.usuarios, query, 'name', 'email', 'role')
         }
     },
-    
+
 
 
 

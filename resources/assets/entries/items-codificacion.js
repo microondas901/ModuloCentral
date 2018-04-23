@@ -31,7 +31,7 @@ let vm = new Vue({
 
                     toastr.info('Item editado correctamente');
                 })
-                .catch(error => this.formErrorsUpdate = error.response.data);
+                .catch(error => this.formErrorsUpdate = error.response.data.errors);
         },
         openEditModal(item) {
             this.fillItem = Object.assign({}, item);

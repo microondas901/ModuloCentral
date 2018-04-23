@@ -42,7 +42,7 @@ new Vue({
                     this.script = this.paginator.data = this.script.filter(value => value != script);
                     this.deleteModalState = false;
                     toastr.warning('Documento Eliminado Correctamente');
-                }).catch(reason => console.log(reason.response.data));
+                }).catch(reason => console.log(reason.response.data.errors));
         },
         openDeleteModal(script) {
             this.elimiScript = script;

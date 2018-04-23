@@ -68,7 +68,7 @@ export default {
                     this.newItem = {};
                     this.error = "";
                 })
-                .catch(error => this.error = error.response.data.nombre[0]);
+                .catch(error => this.error = error.response.data.errors.nombre[0]);
         },
         destroy(item){
             axios.delete(this.rest + '/' + item.PK_id)
@@ -88,7 +88,7 @@ export default {
                     this.editable = {};
                     this.updateError = "";
                 })
-                .catch(error => this.updateError = error.response.data.nombre[0]);
+                .catch(error => this.updateError = error.response.data.errors.nombre[0]);
 
         }
     }

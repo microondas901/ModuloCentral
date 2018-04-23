@@ -3,7 +3,7 @@
     <div class="form-group form-md-line-input" :class="{'has-error': errors.nombre }">
         <div class="input-icon">
           <i class="fa fa-cubes"></i>
-          <input type="text" required="" placeholder="Nombre Del Proyecto" class="form-control" v-model="proyectoEdit.nombre"/>
+          <input type="text" required="" placeholder="Nombre Del Proyecto" class="form-control" v-model="proyectoEdit.nombre" maxlength="30"/>
           <label class="help-block" v-if="errors.nombre">
             {{ errors.nombre.join() }}
           </label>
@@ -97,7 +97,7 @@ export default{
             this.errors = {};
             this.$emit('update', proyecto)
           })
-          .catch(error => this.errors = error.response.data)
+          .catch(error => this.errors = error.response.data.errors)
       }
     }
 }

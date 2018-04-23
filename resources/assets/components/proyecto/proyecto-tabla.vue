@@ -151,7 +151,7 @@ export default {
                 this.destroyModal = false
                 toastr.info('Ha eliminado del proyecto ' + this.proyecto.nombre);
                 this.$emit('removed', this.proyecto)
-            }).catch(err => this.formErrors = err.response.data);
+            }).catch(err => this.formErrors = err.response.data.errors);
         }
     }
 }

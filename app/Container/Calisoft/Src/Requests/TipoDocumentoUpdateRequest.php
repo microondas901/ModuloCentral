@@ -24,8 +24,8 @@ class TipoDocumentoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'string|unique:TBL_TiposDocumento,nombre,' . $this->PK_id . ',PK_id',
-            'required' => 'boolean'
+            'nombre' => 'string|max:20|unique:TBL_TiposDocumento,nombre,' . $this->PK_id . ',PK_id',
+            'required' => 'sometimes|nullable|boolean'
         ];
     }
 }

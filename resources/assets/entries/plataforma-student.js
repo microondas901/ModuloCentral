@@ -13,9 +13,9 @@ new Vue({
     el: '#app',
     components: {
         Modal,
-        BsSwitch, 
+        BsSwitch,
         TextInput,
-        TextareaInput, 
+        TextareaInput,
         SelectInput,
         Popover,
         TestList,
@@ -40,33 +40,33 @@ new Vue({
     },
     created() {
         axios.get(`/api/proyectos/${window.proyectoId}/plataforma`)
-                .then(res => this.casoPrueba = res.data);
+            .then(res => this.casoPrueba = res.data);
         axios.get(`api/tiposInputs`)
-                .then(res => this.tiposInputs = res.data);
+            .then(res => this.tiposInputs = res.data);
 
         // Obtener el día de hoy.
         var dt = new Date();
-        var m = dt.getMonth()+1;
+        var m = dt.getMonth() + 1;
         var d = dt.getDate();
         var y = dt.getFullYear();
 
-        if (m<10 && d>=10){
-            this.dia = y +'-0'+ m + '-' + d;
+        if (m < 10 && d >= 10) {
+            this.dia = y + '-0' + m + '-' + d;
         }
-        if(d<10 && m>=10){
-            this.dia = y +'-'+ m + '-0' + d;
+        if (d < 10 && m >= 10) {
+            this.dia = y + '-' + m + '-0' + d;
         }
-        if(m<10 && d<10){
-            this.dia = y +'-0'+ m + '-0' + d;
+        if (m < 10 && d < 10) {
+            this.dia = y + '-0' + m + '-0' + d;
         }
-        if(m>=10 && d>=10){
-            this.dia = y +'-'+ m + '-' + d;
+        if (m >= 10 && d >= 10) {
+            this.dia = y + '-' + m + '-' + d;
         }
 
         // FIN Obtener el día de hoy.                
     },
     methods: {
-        schema(){
+        schema() {
             return {
                 formulario: "",
                 observacion: "",
@@ -75,35 +75,35 @@ new Vue({
 
             }
         },
-        cerrarModalEnv(){
+        cerrarModalEnv() {
             this.fillCasoPrueba = this.schema();
             this.casoPrueba.formulario = "";
 
         },
         update(caso) {
-            
+
             axios.post('/api/enviarCasoPrueba/' + this.fillCasoPrueba.PK_id, this.fillCasoPrueba)
                 .then(response => {
                     this.formUpdateErrors = {};
                     this.casoPrueba = this.casoPrueba.map(value => {
                         return value.PK_id == caso.PK_id ? caso : value;
                     });
-                    this.enviarModalState = false;                   
+                    this.enviarModalState = false;
                     toastr.info('Caso prueba subido correctamente');
                 })
-                .catch(error => this.formErrorsUpdate = error.response.data);
-                
+                .catch(error => this.formErrorsUpdate = error.response.data.errors);
+
         },
-        cadenaJson(json,caso) {
-            if(this.IsJsonString(json) == false){
+        cadenaJson(json, caso) {
+            if (this.IsJsonString(json) == false) {
                 this.formErrorsUpdate.formulario = 'El texto introducido no corresponde a un Json'
                 toastr.error('El texto introducido no corresponde a un Json');
             } else {
-            caso.formulario = this.fillCasoPrueba.formulario;
-            this.fillCasoPrueba = caso;
-            this.json = JSON.parse(json);
-            this.enviarModalState = true;
-            this.fillCasoPrueba.testInput = new Array(this.json.length);
+                caso.formulario = this.fillCasoPrueba.formulario;
+                this.fillCasoPrueba = caso;
+                this.json = JSON.parse(json);
+                this.enviarModalState = true;
+                this.fillCasoPrueba.testInput = new Array(this.json.length);
             }
         },
         IsJsonString(str) {
@@ -116,4 +116,3 @@ new Vue({
         }
     }
 });
-

@@ -24,7 +24,7 @@ class ProyectoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre'    => 'required|string|min:5|unique:TBL_Proyectos',
+          'nombre'    => 'required|string|between:5,30|unique:TBL_Proyectos',
           'grupo'     => 'required|integer',
           'semillero' => 'required|integer',
           'categoria' => 'required|integer'

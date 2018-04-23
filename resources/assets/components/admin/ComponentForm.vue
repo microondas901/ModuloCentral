@@ -3,7 +3,7 @@
                     
         <text-input name="nombre" label="Nombre" icon="fa fa-tag" 
             v-model="componente.nombre"
-            v-validate="'required|alpha_spaces'"
+            v-validate="'required|alpha_spaces|max:30'"
             :error-messages="errors.collect('nombre')" 
             required>
         </text-input>
@@ -14,7 +14,7 @@
         </div>
         
         <textarea-input name="descripcion" label="Descripción" v-model="componente.descripcion" 
-            v-validate="'required'"
+            v-validate="'required|max:300'"
             :error-messages="errors.collect('descripcion')"    
             required>
         </textarea-input>

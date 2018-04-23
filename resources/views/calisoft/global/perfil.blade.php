@@ -50,12 +50,12 @@
                                    <input type="hidden" name="PK_id" value="{{ auth()->id() }}">
 
                                     @component('components.text', [
-                                    'name' => 'name',
-                                    'attributes' => "required",
-                                    'label' => 'Nombre',
-                                    'help' => 'Cambiar el Nombre',
-                                    'icon' => 'fa fa-user',
-                                    'value'=> old('name') ?: auth()->user()->name,
+                                        'name' => 'name',
+                                        'attributes' => "required",
+                                        'label' => 'Nombre',
+                                        'help' => 'Cambiar el Nombre',
+                                        'icon' => 'fa fa-user',
+                                        'value'=> old('name') ?: auth()->user()->name,
                                     ])
                                     @endcomponent
                                      @component('components.email', [
@@ -81,12 +81,7 @@
                                   <strong>{{session('mensaje')}}</strong>
                                 </div>
                                 @endif
-                                @if(session()->has('error'))
-                                            <div class="alert alert-danger alert-dismissable">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>{{session('error')}}</strong>
-                                            </div>
-                                        @endif
+                                @include('components.errors')
                               </div>
 
                             <!-- END PERSONAL INFO TAB -->

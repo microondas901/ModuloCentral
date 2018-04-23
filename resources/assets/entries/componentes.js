@@ -25,12 +25,12 @@ new Vue({
         }
     },
 
-    created(){
+    created() {
         axios.get(`/api/tdocumentos/${this.documentoId}/componentes`)
             .then(res => this.componentes = res.data);
     },
 
-    methods:{
+    methods: {
 
         //abre el modal de edicion
         openEditModal(componentes) {
@@ -39,7 +39,7 @@ new Vue({
         },
 
         //crea el componente del documento
-        store(componente){
+        store(componente) {
             componente.FK_TipoDocumentoId = this.documentoId;
             axios.post('/api/componentes', componente)
                 .then(res => {
@@ -48,7 +48,7 @@ new Vue({
                     $("#crear-componente").modal("hide");
                     toastr.info('Componente subido correctamente');
                 })
-                .catch(err => this.$refs.createForm.setErrors(err.response.data));
+                .catch(err => this.$refs.createForm.setErrors(err.response.data.errors));
         },
 
         //actualiza el componente
@@ -61,7 +61,7 @@ new Vue({
                     $("#editar-componentes").modal("hide");
                     toastr.info('Componente editado correctamente');
                 })
-                .catch(err => this.$refs.editForm.setErrors(err.response.data));
+                .catch(err => this.$refs.editForm.setErrors(err.response.data.errors));
         },
 
         //elimina el componente
@@ -74,11 +74,11 @@ new Vue({
         },
 
         //esquema de un componente de documento
-        getSchema(){
+        getSchema() {
             return {
                 nombre: "",
                 required: false,
-                descripcion:"",
+                descripcion: "",
             }
         },
 

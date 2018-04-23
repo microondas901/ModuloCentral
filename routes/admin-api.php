@@ -32,6 +32,9 @@ Route::get('tdocumentos/{tdocumento}/componentes', 'TiposDocumentoController@get
 // Crea, Actualiza y Elimina los componentes de n tipo de diagrama 
 Route::resource('componentes', 'ComponenteController', [
     'only' => ['store', 'update', 'destroy'],
+    'parameters' => [
+        'componentes' => 'componente'
+    ]
 ]);
 
 // CRUD de proyectos

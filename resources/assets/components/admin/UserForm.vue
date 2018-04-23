@@ -1,11 +1,11 @@
 <template>
 	<form @submit.prevent="safeExec(store)" novalidate>
       	<text-input name="name"  label="Nombre" icon="fa fa-user" 
-      		v-model="user.name" v-validate="'required|alpha_spaces'" data-vv-as="nombre"
+      		v-model="user.name" v-validate="'required|alpha_spaces|max:30'" data-vv-as="nombre"
       		:error-messages="errors.collect('name')" required/>
 
       	<text-input type="email" name="email" label="Correo" icon="fa fa-envelope-o"
-      		v-model="user.email" v-validate="'required|email'" data-vv-as="correo"
+      		v-model="user.email" v-validate="'required|email|max:255'" data-vv-as="correo"
       		:error-messages="errors.collect('email')" required/>
                   
         <text-input type="password" name="password" label="Contraseña" icon="fa fa-key"
@@ -47,7 +47,7 @@ export default {
                     this.user = {};
 					setTimeout(() => this.errors.clear())
                 })
-                .catch(reason => this.setErrors(reason.response.data));
+                .catch(reason => this.setErrors(reason.response.data.errors));
         },
 	}
 }

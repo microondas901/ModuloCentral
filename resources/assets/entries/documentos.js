@@ -39,7 +39,7 @@ let vm = new Vue({
                     this.editModalState = false;
                     toastr.info('Documento editado correctamente');
                     this.refresh();
-                }).catch(error => this.formErrorsUpdate = error.response.data);
+                }).catch(error => this.formErrorsUpdate = error.response.data.errors);
         },
         destroy(documento) {
             axios.delete('/api/documentacion/' + documento.PK_id).then(() => {
@@ -58,7 +58,7 @@ Dropzone.options.myAwesomeDropzone = {
     uploadMultiple: false,
     maxFilezise: 500,
     acceptedFiles: '.pdf',
-    success: function (a, doc) {
+    success: function(a, doc) {
         vm.$data.documentos.push(doc);
         toastr.info('Documento subido correctamente');
         return a.previewElement ? a.previewElement.classList.add("dz-success") : void 0
