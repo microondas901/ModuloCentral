@@ -168,8 +168,69 @@ class EvaluatorController extends Controller
         $DiCalificacionCTB = round($CalificacionCTB, 2);
         $DiCalificacionPSN = round($CalificacionPSN, 2);
 
+        $servername = "127.0.0.1";
+        $username = "root";
+        $password = "";
+        $dbname = "BDS_Calisoft";
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        
+        $sql1 = "UPDATE TBL_CalificacionBd
+        SET total=$total, acertadas=$acertadas, caliicacion=$DiCalificacionBDS
+        WHERE FK_TipoNomenclaturaId= 1, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql2 ="UPDATE TBL_CalificacionBd
+        SET total=$total1, acertadas=$acertadas1, caliicacion=$DiCalificacionSCH
+        WHERE FK_TipoNomenclaturaId= 2, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql3 ="UPDATE TBL_CalificacionBd
+        SET total=$total2, acertadas=$acertadas2, caliicacion=$DiCalificacionTBL
+        WHERE FK_TipoNomenclaturaId= 3, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql4 ="UPDATE TBL_CalificacionBd
+        SET total=$total3, acertadas=$acertadas3, caliicacion=$DiCalificacionVWS
+        WHERE FK_TipoNomenclaturaId= 4, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql5 ="UPDATE TBL_CalificacionBd
+        SET total=$total4, acertadas=$acertadas4, caliicacion=$DiCalificacionPK
+        WHERE FK_TipoNomenclaturaId= 5, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql6 ="UPDATE TBL_CalificacionBd
+        SET total=$total5, acertadas=$acertadas5, caliicacion=$DiCalificacionFK
+        WHERE FK_TipoNomenclaturaId= 6, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql7 ="UPDATE TBL_CalificacionBd
+        SET total=$total6, acertadas=$acertadas6, caliicacion=$DiCalificacionPGS
+        WHERE FK_TipoNomenclaturaId= 7, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql8 ="UPDATE TBL_CalificacionBd
+        SET total=$total7, acertadas=$acertadas7, caliicacion=$DiCalificacionCTB
+        WHERE FK_TipoNomenclaturaId= 8, FK_ArchivoBdId = $proyecto->PK_id";
+
+        $sql9 ="UPDATE TBL_CalificacionBd
+        SET total=$total8, acertadas=$acertadas8, caliicacion=$DiCalificacionPSN
+        WHERE FK_TipoNomenclaturaId= 9, FK_ArchivoBdId = $proyecto->PK_id";
+
+        mysqli_query($conn, $sql1); 
+
+        mysqli_query($conn, $sql2);
+
+        mysqli_query($conn, $sql3);
+
+        mysqli_query($conn, $sql4);
+
+        mysqli_query($conn, $sql5);
+
+        mysqli_query($conn, $sql6);
+
+        mysqli_query($conn, $sql7);
+
+        mysqli_query($conn, $sql8);
+
+        mysqli_query($conn, $sql9);
+
+            /*$sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
             DB::update($sql, array($total, $acertadas, $DiCalificacionBDS,1,  $proyecto->PK_id));
 
             $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
@@ -196,7 +257,7 @@ class EvaluatorController extends Controller
             $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ? , calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
             DB::update($sql, array($total8, $acertadas8, $DiCalificacionPSN,9,  $proyecto->PK_id));
 
-
+            */
 
         return view('calisoft.evaluator.evaluator-sql',compact('proyecto'),[
             'nomenclaturabd' => $nomenclaturabd,
