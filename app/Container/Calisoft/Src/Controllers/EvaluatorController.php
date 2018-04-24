@@ -147,17 +147,15 @@ class EvaluatorController extends Controller
         $valor8 = $arrayItem[7];
         $valor9 = $arrayItem[8];
 
-        round(1.95583, 2);
-
-        $CalificacionBDS = $acertadas  == 0 ? 0 : ((($acertadas/$total)*$valor)*5)/$valor;
-        $CalificacionSCH = $acertadas1 == 0 ? 0 : ((($acertadas1/$total1)*$valor2)*5)/$valor2;
-        $CalificacionTBL = $acertadas2 == 0 ? 0 : ((($acertadas2/$total2)*$valor3)*5)/$valor3;
-        $CalificacionVWS = $acertadas3 == 0 ? 0 : ((($acertadas3/$total3)*$valor4)*5)/$valor4;
-        $CalificacionPK  = $acertadas4 == 0 ? 0 : ((($acertadas4/$total4)*$valor5)*5)/$valor5;
-        $CalificacionFK  = $acertadas5 == 0 ? 0 : ((($acertadas5/$total5)*$valor6)*5)/$valor6;
-        $CalificacionPGS = $acertadas6 == 0 ? 0 : ((($acertadas6/$total6)*$valor7)*5)/$valor7;
-        $CalificacionCTB = $acertadas7 == 0 ? 0 : ((($acertadas7/$total7)*$valor8)*5)/$valor8;
-        $CalificacionPSN = $acertadas8 == 0 ? 0 : ((($acertadas8/$total8)*$valor9)*5)/$valor9; 
+        $CalificacionBDS = $total  == 0 ? 0 : ((($acertadas/$total)*$valor)*5)/$valor;
+        $CalificacionSCH = $total1 == 0 ? 0 : ((($acertadas1/$total1)*$valor2)*5)/$valor2;
+        $CalificacionTBL = $total2 == 0 ? 0 : ((($acertadas2/$total2)*$valor3)*5)/$valor3;
+        $CalificacionVWS = $total3 == 0 ? 0 : ((($acertadas3/$total3)*$valor4)*5)/$valor4;
+        $CalificacionPK  = $total4 == 0 ? 0 : ((($acertadas4/$total4)*$valor5)*5)/$valor5;
+        $CalificacionFK  = $total5 == 0 ? 0 : ((($acertadas5/$total5)*$valor6)*5)/$valor6;
+        $CalificacionPGS = $total6 == 0 ? 0 : ((($acertadas6/$total6)*$valor7)*5)/$valor7;
+        $CalificacionCTB = $total7 == 0 ? 0 : ((($acertadas7/$total7)*$valor8)*5)/$valor8;
+        $CalificacionPSN = $total8 == 0 ? 0 : ((($acertadas8/$total8)*$valor9)*5)/$valor9; 
 
 
         $DiCalificacionBDS = round($CalificacionBDS, 2);
