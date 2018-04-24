@@ -60,6 +60,17 @@ class EvaluatorController extends Controller
         $nomenclaturabd = NomenclaturaBd::
                     select('TBL_TipoNomenclatura.nomenclatura')
                           ->get();
+        
+        $valorItem = NomenclaturaBd::
+                    select('TBL_TipoNomenclatura.valor')
+                    ->get();
+
+        $arrayItem = array();
+
+        foreach($valorItem as $valorItems)
+        {
+            $arrayItem[] = $valorItems->valor;
+        }
 
         $palabra_info = "";
         $palabra_infos = "";
@@ -123,34 +134,70 @@ class EvaluatorController extends Controller
         $acertadas6 = $array1[6];
         $acertadas7 = $array1[7];
         $acertadas8 = $array1[8];
-        
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?  WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total, $acertadas,1,  $proyecto->PK_id));
+        // array valor de cada item
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total1, $acertadas1,2,  $proyecto->PK_id));
+        $valor  = $arrayItem[0];
+        $valor2 = $arrayItem[1];
+        $valor3 = $arrayItem[2];
+        $valor4 = $arrayItem[3];
+        $valor5 = $arrayItem[4];
+        $valor6 = $arrayItem[5];
+        $valor7 = $arrayItem[6];
+        $valor8 = $arrayItem[7];
+        $valor9 = $arrayItem[8];
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total2, $acertadas2,3,  $proyecto->PK_id));
+        round(1.95583, 2);
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total3, $acertadas3,4,  $proyecto->PK_id));
+        $CalificacionBDS = $acertadas  == 0 ? 0 : ((($acertadas/$total)*$valor)*5)/$valor;
+        $CalificacionSCH = $acertadas1 == 0 ? 0 : ((($acertadas1/$total1)*$valor2)*5)/$valor2;
+        $CalificacionTBL = $acertadas2 == 0 ? 0 : ((($acertadas2/$total2)*$valor3)*5)/$valor3;
+        $CalificacionVWS = $acertadas3 == 0 ? 0 : ((($acertadas3/$total3)*$valor4)*5)/$valor4;
+        $CalificacionPK  = $acertadas4 == 0 ? 0 : ((($acertadas4/$total4)*$valor5)*5)/$valor5;
+        $CalificacionFK  = $acertadas5 == 0 ? 0 : ((($acertadas5/$total5)*$valor6)*5)/$valor6;
+        $CalificacionPGS = $acertadas6 == 0 ? 0 : ((($acertadas6/$total6)*$valor7)*5)/$valor7;
+        $CalificacionCTB = $acertadas7 == 0 ? 0 : ((($acertadas7/$total7)*$valor8)*5)/$valor8;
+        $CalificacionPSN = $acertadas8 == 0 ? 0 : ((($acertadas8/$total8)*$valor9)*5)/$valor9; 
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total4, $acertadas4,5,  $proyecto->PK_id));
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total5, $acertadas5,6,  $proyecto->PK_id));
+        $DiCalificacionBDS = round($CalificacionBDS, 2);
+        $DiCalificacionSCH = round($CalificacionSCH, 2);
+        $DiCalificacionTBL = round($CalificacionTBL, 2);
+        $DiCalificacionVWS = round($CalificacionVWS, 2);
+        $DiCalificacionPK  = round($CalificacionPK,  2);
+        $DiCalificacionFK  = round($CalificacionFK,  2);
+        $DiCalificacionPGS = round($CalificacionPGS, 2);
+        $DiCalificacionCTB = round($CalificacionCTB, 2);
+        $DiCalificacionPSN = round($CalificacionPSN, 2);
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total6, $acertadas6,7,  $proyecto->PK_id));
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total7, $acertadas7,8,  $proyecto->PK_id));
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total, $acertadas, $DiCalificacionBDS,1,  $proyecto->PK_id));
 
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total8, $acertadas8,9,  $proyecto->PK_id));
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total1, $acertadas1, $DiCalificacionSCH,2,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total2, $acertadas2, $DiCalificacionTBL,3,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total3, $acertadas3, $DiCalificacionVWS,4,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total4, $acertadas4, $DiCalificacionPK, 5,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total5, $acertadas5, $DiCalificacionFK,6,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total6, $acertadas6, $DiCalificacionPGS,7,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total7, $acertadas7, $DiCalificacionCTB,8,  $proyecto->PK_id));
+
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ? , calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            DB::update($sql, array($total8, $acertadas8, $DiCalificacionPSN,9,  $proyecto->PK_id));
+
 
 
         return view('calisoft.evaluator.evaluator-sql',compact('proyecto'),[
