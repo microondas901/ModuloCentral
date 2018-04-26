@@ -168,10 +168,10 @@ class EvaluatorController extends Controller
         $DiCalificacionCTB = round($CalificacionCTB, 2);
         $DiCalificacionPSN = round($CalificacionPSN, 2);
 
-        $servername = "127.0.0.1";
+        /*$servername = "127.0.0.1";
         $username = "root";
         $password = "";
-        $dbname = "BDS_Calisoft";
+        $dbname = "calisoft";
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -229,8 +229,9 @@ class EvaluatorController extends Controller
         mysqli_query($conn, $sql8);
 
         mysqli_query($conn, $sql9);
+        */
 
-            /*$sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
+            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
             DB::update($sql, array($total, $acertadas, $DiCalificacionBDS,1,  $proyecto->PK_id));
 
             $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
@@ -257,7 +258,6 @@ class EvaluatorController extends Controller
             $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ? , calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
             DB::update($sql, array($total8, $acertadas8, $DiCalificacionPSN,9,  $proyecto->PK_id));
 
-            */
 
         return view('calisoft.evaluator.evaluator-sql',compact('proyecto'),[
             'nomenclaturabd' => $nomenclaturabd,
