@@ -168,95 +168,41 @@ class EvaluatorController extends Controller
         $DiCalificacionCTB = round($CalificacionCTB, 2);
         $DiCalificacionPSN = round($CalificacionPSN, 2);
 
-        /*$servername = "127.0.0.1";
-        $username = "root";
-        $password = "";
-        $dbname = "calisoft";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 1, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total, 'acertadas' => $acertadas, 'calificacion' => $DiCalificacionBDS]);
 
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        
-        $sql1 = "UPDATE TBL_CalificacionBd
-        SET total=$total, acertadas=$acertadas, caliicacion=$DiCalificacionBDS
-        WHERE FK_TipoNomenclaturaId= 1, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 2, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total1, 'acertadas' => $acertadas1, 'calificacion' => $DiCalificacionSCH]);
 
-        $sql2 ="UPDATE TBL_CalificacionBd
-        SET total=$total1, acertadas=$acertadas1, caliicacion=$DiCalificacionSCH
-        WHERE FK_TipoNomenclaturaId= 2, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 3, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total2, 'acertadas' => $acertadas2, 'calificacion' => $DiCalificacionTBL]);
 
-        $sql3 ="UPDATE TBL_CalificacionBd
-        SET total=$total2, acertadas=$acertadas2, caliicacion=$DiCalificacionTBL
-        WHERE FK_TipoNomenclaturaId= 3, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 4, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total3, 'acertadas' => $acertadas3, 'calificacion' => $DiCalificacionVWS]);
 
-        $sql4 ="UPDATE TBL_CalificacionBd
-        SET total=$total3, acertadas=$acertadas3, caliicacion=$DiCalificacionVWS
-        WHERE FK_TipoNomenclaturaId= 4, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 5, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total4, 'acertadas' => $acertadas4, 'calificacion' => $DiCalificacionPK]);
 
-        $sql5 ="UPDATE TBL_CalificacionBd
-        SET total=$total4, acertadas=$acertadas4, caliicacion=$DiCalificacionPK
-        WHERE FK_TipoNomenclaturaId= 5, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 6, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total5, 'acertadas' => $acertadas5, 'calificacion' => $DiCalificacionFK]);
 
-        $sql6 ="UPDATE TBL_CalificacionBd
-        SET total=$total5, acertadas=$acertadas5, caliicacion=$DiCalificacionFK
-        WHERE FK_TipoNomenclaturaId= 6, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 7, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total6, 'acertadas' => $acertadas6, 'calificacion' => $DiCalificacionPGS]);
 
-        $sql7 ="UPDATE TBL_CalificacionBd
-        SET total=$total6, acertadas=$acertadas6, caliicacion=$DiCalificacionPGS
-        WHERE FK_TipoNomenclaturaId= 7, FK_ArchivoBdId = $proyecto->PK_id";
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 8, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total7, 'acertadas' => $acertadas7, 'calificacion' => $DiCalificacionCTB]);
 
-        $sql8 ="UPDATE TBL_CalificacionBd
-        SET total=$total7, acertadas=$acertadas7, caliicacion=$DiCalificacionCTB
-        WHERE FK_TipoNomenclaturaId= 8, FK_ArchivoBdId = $proyecto->PK_id";
-
-        $sql9 ="UPDATE TBL_CalificacionBd
-        SET total=$total8, acertadas=$acertadas8, caliicacion=$DiCalificacionPSN
-        WHERE FK_TipoNomenclaturaId= 9, FK_ArchivoBdId = $proyecto->PK_id";
-
-        mysqli_query($conn, $sql1); 
-
-        mysqli_query($conn, $sql2);
-
-        mysqli_query($conn, $sql3);
-
-        mysqli_query($conn, $sql4);
-
-        mysqli_query($conn, $sql5);
-
-        mysqli_query($conn, $sql6);
-
-        mysqli_query($conn, $sql7);
-
-        mysqli_query($conn, $sql8);
-
-        mysqli_query($conn, $sql9);
-        */
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total, $acertadas, $DiCalificacionBDS,1,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total1, $acertadas1, $DiCalificacionSCH,2,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total2, $acertadas2, $DiCalificacionTBL,3,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total3, $acertadas3, $DiCalificacionVWS,4,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total4, $acertadas4, $DiCalificacionPK, 5,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total5, $acertadas5, $DiCalificacionFK,6,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total6, $acertadas6, $DiCalificacionPGS,7,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ?, calificacion = ?    WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total7, $acertadas7, $DiCalificacionCTB,8,  $proyecto->PK_id));
-
-            $sql = "UPDATE TBL_CalificacionBd SET total= ?, acertadas= ? , calificacion = ?   WHERE FK_TipoNomenclaturaId=? and FK_ArchivoBdId= ?";
-            DB::update($sql, array($total8, $acertadas8, $DiCalificacionPSN,9,  $proyecto->PK_id));
+            $sql = DB::table('TBL_CalificacionBd')
+            ->where('FK_TipoNomenclaturaId' , '=', 9, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->update(['total' => $total8, 'acertadas' => $acertadas8, 'calificacion' => $DiCalificacionPSN]);
 
 
         return view('calisoft.evaluator.evaluator-sql',compact('proyecto'),[
