@@ -30,7 +30,9 @@
             </div>
             <div class="col-md-6 login-container bs-reset mt-login-5-bsfix">
                 <!-- Login Content -->
+                
                 <div class="login-content">
+                    @include('components.status')
                     <h1>{{ $title or config('app.name') }}</h1>
                     <p> {{ $description or config('app.description') }} </p>
                     @yield('content')
