@@ -11,7 +11,7 @@
             <input-list :formulario="json" :caso-prueba-id="casoPruebaId" :npruebas="10"></input-list>
         </div>
         
-            
+            @include('partials.modal-help-evaluador-plataforma-testing')
         @endcomponent
     </div>
 @endsection

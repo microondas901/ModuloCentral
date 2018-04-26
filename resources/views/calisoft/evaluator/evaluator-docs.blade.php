@@ -23,6 +23,7 @@
         
         @endcomponent
     </div>
+@include('partials.modal-help-evaluador-modelacion-calificacion')
 @endsection
 
 @push('functions')

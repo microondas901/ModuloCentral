@@ -126,7 +126,7 @@
                 
             </div>
         
-            
+            @include('partials.modal-help-evaluador-plataforma-caso-prueba')
         @endcomponent
     </div>
 @endsection

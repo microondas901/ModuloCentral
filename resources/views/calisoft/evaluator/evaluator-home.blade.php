@@ -5,6 +5,7 @@
                 <proyecto-panel :proyecto="proyecto" />
             </div>
         </div>
+        @include('partials.modal-help-evaluador-proyectos-asignados')
     @endcomponent
 </div>
 

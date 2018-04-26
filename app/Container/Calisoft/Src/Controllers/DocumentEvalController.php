@@ -44,12 +44,21 @@ class DocumentEvalController extends Controller
             'checked' => 'boolean',
             'observacion' => 'nullable|string'
         ]);
-
+        
+        
+        
         $documento->evaluaciones()
             ->where('FK_EvaluatorId', auth()->id())
             ->where('FK_ComponenteId', $request->componente_id)
             ->where('FK_DocumentoId', $documento->PK_id)
             ->update($request->only('checked', 'observacion'));
+        
+        $cTot = DocEvaluation::all()->where('FK_DocumentoId', $documento->PK_id)->count();
+        $docEva = DocEvaluation::all()->where('FK_DocumentoId', $documento->PK_id)->where('checked', '1')->count();
+        $nota= $docEva/$cTot;
+        $documento->nota= $nota;
+        $documento->save();
+        
     }
 
 

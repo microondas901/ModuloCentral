@@ -10,7 +10,11 @@
                 <div class="col-sm-7 col-xs-12">
                     <div class="text-right">
                         <popover v-for="(doc, index) in filter(tipo)" :title="doc.nombre" :key="doc.PK_id">
-                            <a href="javascript:;" class="label label-danger big" data-role="trigger" style="margin-left: 1%">
+                            <a v-if="doc.nota !=null || doc > 0" href="javascript:;" class="label label-success big" data-role="trigger" style="margin-left: 1%">
+                                <span class="fa fa-file-pdf-o"></span>
+                                {{ index + 1}}
+                            </a>
+                            <a v-else href="javascript:;" class="label label-danger big" data-role="trigger" style="margin-left: 1%">
                                 <span class="fa fa-file-pdf-o"></span>
                                 {{ index + 1}}
                             </a>
@@ -20,6 +24,10 @@
 
                                 <a title="descargar" class="btn btn-info btn-xs" :href="`${doc.url}`" target="_blank">
                                     <span class="glyphicon glyphicon-download-alt"></span>
+                                </a>
+
+                                <a  title="proceso" class="btn btn-info btn-xs">
+                                    <span> {{doc.nota *100 }}%  </span>
                                 </a>
 
                             </div>

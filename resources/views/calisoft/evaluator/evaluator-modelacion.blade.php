@@ -10,14 +10,15 @@
         <div id="app">
             <document-list :documentos="documentos" :tipos="tipos">
                 <template slot="buttons" scope="props">
-                    <a :href="'/evaluar/' + props.doc.PK_id" title="calificar" class="btn btn-warning btn-xs">
+                    <a  :href="'/evaluar/' + props.doc.PK_id" title="calificar" class="btn btn-warning btn-xs">
                         <span class="fa fa-asterisk"></span>
                     </a>
+                    
                 </template>
             </document-list>
         </div>
-        
-            
+                           
+        @include('partials.modal-help-evaluador-modelacion-listar')
         @endcomponent
     </div>
 @endsection

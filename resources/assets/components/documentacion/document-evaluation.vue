@@ -3,7 +3,10 @@
         <div class="panel panel-default" v-for="(evaluacion, index) in evaluaciones" :key="evaluacion.FK_ComponenteId">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + index">
+                    <a v-if="evaluacion.componente.required == 0" data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + index">
+                        {{ evaluacion.componente.nombre }} <span class="label label-primary big">r</span>
+                    </a>
+                    <a v-else data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + index">
                         {{ evaluacion.componente.nombre }}
                     </a>
                     <span class="pull-right fa" :class="indicator(evaluacion)"></span>
