@@ -58,7 +58,7 @@
                 <form @submit.prevent="update(fillCasoPrueba.PK_id)" class="formarchivo" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="col-sm-12">
-                        <textarea-input name="observacion" :error="formErrorsUpdate.descripcion" 
+                        <textarea-input name="observacion" :error-messages="formErrorsUpdate.observacion" 
                                         v-model="fillCasoPrueba.observacion" label="Observación (Opcional)" 
                                         maxlength="200">
                         </textarea-input>
