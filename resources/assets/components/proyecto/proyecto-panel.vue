@@ -18,6 +18,7 @@
                             <li><a :href="basedatos" class="text-danger">BASES DE DATOS</a></li>
                         </template>
                     </dropdown>
+                    <dropdown-resultados v-if="completado" :proyecto-id="proyecto.PK_id"/>
                     <div v-if="activo" class="text-center">
                         <em>El proyecto todavia no se encuentra listo para evaluación</em>
                     </div>
@@ -59,8 +60,9 @@
 <script>
 import { Dropdown, Modal } from "uiv";
 import ProyectoEval from "./proyecto-eval";
+import DropdownResultados from './dropdown-resultados'
 import UrlsMixin from "../mixins/proyecto-urls";
-import EstadoMixin from "../mixins/proyecto-estados";
+import EstadoMixin from "../mixins/proyecto-estados"
 
 export default {
   mixins: [UrlsMixin, EstadoMixin],
@@ -70,7 +72,8 @@ export default {
   components: {
     Dropdown,
     ProyectoEval,
-    Modal
+    Modal,
+    DropdownResultados
   },
   methods: {
     update(accion) {

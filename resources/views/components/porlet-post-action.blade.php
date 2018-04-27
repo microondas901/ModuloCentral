@@ -5,6 +5,6 @@
     <i class="{{ $icon }}"></i>
 </button>
 
-<form id="{{ $id }}" action="{{ $url }}" method="POST" style="display: none">
+<form id="{{ $id }}" action="{{ $url }}" method="POST" style="display: none" target="_blank">
     {{ csrf_field() }}
 </form>

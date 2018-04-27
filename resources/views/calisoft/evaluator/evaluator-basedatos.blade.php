@@ -4,8 +4,9 @@
     <div class="col-md-12">
         @component('components.portlet', [
             'icon' => 'fa fa-files-o', 
-            'title' => 'Nomenclatura: ' . $proyecto->nombre
-            ])
+            'title' => 'Nomenclatura: ' . $proyecto->nombre,
+            'pdf' => route('pdf.basedatos', compact('proyecto'))
+        ])
             <div id="app">
                 <div class="row">
                     <div class="col-md-6">

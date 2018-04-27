@@ -4,7 +4,8 @@
     <div class="col-md-12">
         @component('components.portlet', [
             'icon' => 'fa fa-files-o', 
-            'title' => 'Modelación: ' . $proyecto->nombre 
+            'title' => 'Modelación: ' . $proyecto->nombre,
+            'pdf' => route('pdf.modelacion', compact('proyecto'))
         ])
 
         <div id="app">
