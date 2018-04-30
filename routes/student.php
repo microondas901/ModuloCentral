@@ -26,6 +26,8 @@ Route::get('documentosBd','StudentController@documentosBd')
 Route::get('/plataformaStudent','StudentController@plataforma')
     ->name('plataformaStudent');
 
+Route::get('/prueba','StudentController@pruebita');
+
 
 Route::prefix('evaluacion')->group(function () {
 
@@ -37,6 +39,8 @@ Route::prefix('evaluacion')->group(function () {
         
     Route::get('/codificacion','StudentController@evaluacionCodificacion')
         ->name('evaluacion.codificacion');
+
+    
         
 });
 

@@ -10,7 +10,7 @@
 
                     @component('components.text', [
                         'name' => 'nombre',
-                        'attributes' => "required",
+                        'attributes' => "required pattern='[0-9a-zA-ZáéíóúñÁÉÍÓÚ ,.:-]{2,300}'",
                         'label' => 'Nombre del proyecto',
                         'help' => 'Digita el nombre',
                         'icon' => 'fa fa-cubes'

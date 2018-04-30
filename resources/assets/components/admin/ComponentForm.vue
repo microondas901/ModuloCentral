@@ -4,7 +4,8 @@
         <text-input name="nombre" label="Nombre" icon="fa fa-tag" 
             v-model="componente.nombre"
             v-validate="'required|alpha_spaces|max:30'"
-            :error-messages="errors.collect('nombre')" 
+            :error-messages="errors.collect('nombre')"
+            pattern="[0-9a-zA-ZáéíóúñÁÉÍÓÚ ,.:-]{2,300}" 
             required>
         </text-input>
         

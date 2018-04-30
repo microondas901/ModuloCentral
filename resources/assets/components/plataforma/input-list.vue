@@ -46,8 +46,15 @@
                         <td>{{ input.type }}</td>
                         <td>{{ input.name || input.id || index }}</td>
                         <td>{{ reglas[index] }}</td>
-                        <td>
+                        <td v-if="matrix[index] == 1">
                             <input class="form-control" v-bind="input" :value="values[index]"  v-validate="reglas[index]"
+                                @input="values[index] = $event.target.value">
+                            <span class="text-danger" v-if="errors.has(input.name)">
+                                {{ errors.first(input.name) }}
+                            </span>
+                        </td>
+                        <td v-else>
+                            <input class="form-control" v-bind="input" :value="values[index]"  v-validate="{ required: true, regex:'^'+matrix[index]+'$'  }"
                                 @input="values[index] = $event.target.value">
                             <span class="text-danger" v-if="errors.has(input.name)">
                                 {{ errors.first(input.name) }}
@@ -100,7 +107,7 @@ import {
 import { mean } from "lodash";
 import FullLoading from "../utils/full-loading";
 export default {
-  props: ["formulario", "casoPruebaId", "npruebas"],
+  props: ["formulario", "casoPruebaId", "npruebas", "matrix"],
   components: { FullLoading },
   data() {
     return {
@@ -116,6 +123,7 @@ export default {
   },
   created() {
     this.refresh();
+    this.$validator.errorBag;
   },
   methods: {
     refresh() {
@@ -129,7 +137,7 @@ export default {
 
       return axios
         .post("/api/testing", {
-          inputs: this.formulario.map(input => input.type),
+          inputs: this.formulario.map(input => input.id),
           tipo: this.tipos[this.selected]
         })
         .then(response => {

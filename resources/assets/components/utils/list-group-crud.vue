@@ -4,7 +4,7 @@
         <li class="list-group-item list-group-item-info">
             <form class="form-inline text-center" @submit.prevent="store">
                 <div class="input-group">
-                    <input type="text" class="form-control" v-model="newItem.nombre" required>
+                    <input type="text" class="form-control" v-model="newItem.nombre" pattern="[0-9a-zA-ZáéíóúñÁÉÍÓÚ ,.:-]{2,300}" required>
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-info">
                             <i class="fa fa-plus"></i>
@@ -27,7 +27,7 @@
             <template v-else>
                 <form class="form-inline text-center" @submit.prevent="update" >
                     <div class="input-group" >
-                        <input type="text" class="form-control" v-model="editable.nombre" required
+                        <input type="text" class="form-control" v-model="editable.nombre" pattern="[0-9a-zA-ZáéíóúñÁÉÍÓÚ ,.:-]{2,300}" required
                             v-focus="true">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-info">

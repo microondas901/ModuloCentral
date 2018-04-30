@@ -1,7 +1,7 @@
 <div class="form-group form-md-line-input {{$errors->has($name) ? 'has-error' : ''}}">
     <div class="input-icon">
         <input {!! $attributes !!} class="form-control" id="{{ $name }}" name="{{ $name }}"
-            type="number" value="{{ $value or '' }}">
+            type="number" value="{{ $value or '' }}" pattern="[0-9 .+]{1,30}">
         <label for="{{ $name }}" class="control-label">{{ $label }}</label>
         @if ($errors->has($name))
             <span class="help-block">

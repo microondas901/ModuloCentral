@@ -21,7 +21,7 @@
             <div class="col-xs-6">
                 @component('components.text', [
                     'name' => 'name',
-                    'attributes' => "required",
+                    'attributes' => "required pattern='[a-zA-ZáéíóúñÁÉÍÓÚ ]{2,50}'",
                     'label' => 'Nombre',
                     'help' => 'Digita el nombre',
                     'icon' => 'fa fa-user'
@@ -34,7 +34,7 @@
             <div class="col-xs-6">
                 @component('components.password', [
                     'name' => 'password',
-                    'attributes' => "required",
+                    'attributes' => "required pattern='[^=<> -]{5,30}'",
                     'label' => 'Contraseña',
                     'help' => 'Digita la contraseña'
                 ])
@@ -43,7 +43,7 @@
             <div class="col-xs-6">
                 @component('components.password', [
                     'name' => 'password_confirmation',
-                    'attributes' => "required",
+                    'attributes' => "required pattern='[^=<> -]{5,30}'",
                     'label' => 'Confirmar Contraseña',
                     'help' => 'Confirmar la contraseña'
                 ])

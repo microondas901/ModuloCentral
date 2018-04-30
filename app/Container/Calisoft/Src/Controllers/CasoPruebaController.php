@@ -112,7 +112,7 @@ class CasoPruebaController extends Controller
         
         //Ciclo for que identifica los tipos de inputs seleccionados por el usuario y concatena con el Json
         for ($i = 0; $i < sizeof($json) ; $i++) {
-            $json[$i]['testInput'] = $test = InputTypes::find($request->testInput[$i])->reglas;
+            $json[$i]['id'] = $test = InputTypes::find($request->testInput[$i])->PK_id;
         }
         
         $proyecto = $request->user()->proyectos()->first(); //obtiene el proyecto del usuario logeado
@@ -125,7 +125,6 @@ class CasoPruebaController extends Controller
         }
 
         $doc->formulario = json_encode($json);
-        
         //Actualiza el caso prueba 
         $proyecto->casoPruebas()->where('PK_id','=',$casoPrueba->PK_id)->update([
         'observacion' => $doc->observacion,

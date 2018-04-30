@@ -52,7 +52,23 @@ class EvaluatorController extends Controller
 
     public function escenario(Proyecto $proyecto, CasoPrueba $casoPrueba)
     {
-        return view('calisoft.evaluator.evaluator-escenario', compact('proyecto','casoPrueba'));
+        $json = json_decode($casoPrueba->formulario);
+        $save = json_decode($casoPrueba->formulario);
+        $tot =0;
+        $matriz[]="";
+        $i=0;
+        $j=0;
+        foreach ($json as $regla){
+            if(array_key_exists('pattern', $regla)){
+                $matriz[$i]=$regla->pattern;
+            }else{
+                $matriz[$i]="1";
+            }
+            $i=$i+1;    
+        }
+        $matrix= json_encode($matriz);
+        //Retorna el Json con la información del tipo de input seleccionado por el desarrollador
+        return view('calisoft.evaluator.evaluator-escenario', compact('proyecto','casoPrueba','matrix'));
     }
 
     public function analizesql(Proyecto $proyecto)

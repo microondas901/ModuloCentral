@@ -42,6 +42,71 @@ class FakerRepository
             case 'url':
                 return $this->faker->url();
                 break;
+            case '1':
+                return $this->faker->name();
+                break;
+            case '2':
+                return $this->faker->email();
+                break;
+            case '3':
+                return $this->faker->pass();
+                break;
+            case '4':
+                return $this->faker->tel();
+                break;
+            case '5':
+                return $this->faker->url();
+                break;
+            case '6':
+                return $this->faker->text();
+                break;
+            case '7':
+                return $this->faker->num();
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
+
+    public function getInvalidValue($type) {
+        switch ($type) {
+            case 'text':
+                return $this->faker->word();
+                break;
+            case 'email':
+                return $this->faker->email();
+                break;
+            case 'password':
+                return $this->faker->password();
+                break;
+            case 'tel':
+                return $this->faker->e164PhoneNumber();
+                break;
+            case 'url':
+                return $this->faker->url();
+                break;
+            case '1':
+                return $this->faker->name2();
+                break;
+            case '2':
+                return $this->faker->email2();
+                break;
+            case '3':
+                return $this->faker->pass2();
+                break;
+            case '4':
+                return $this->faker->tel2();
+                break;
+            case '5':
+                return $this->faker->url2();
+                break;
+            case '6':
+                return $this->faker->text2();
+                break;
+            case '7':
+                return $this->faker->num2();
+                break;
             default:
                 return null;
                 break;
@@ -63,5 +128,11 @@ class FakerRepository
     public function getXssValue() {
         return $this->faker->xss();
     }
+
+    public function getNameValue() {
+        return $this->faker->xss();
+    }
+
+    
 
 }

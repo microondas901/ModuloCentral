@@ -51,7 +51,7 @@
 
                                     @component('components.text', [
                                         'name' => 'name',
-                                        'attributes' => "required",
+                                        'attributes' => "required pattern='[a-zA-ZáéíóúñÁÉÍÓÚ ]{2,50}'",
                                         'label' => 'Nombre',
                                         'help' => 'Cambiar el Nombre',
                                         'icon' => 'fa fa-user',
@@ -125,7 +125,7 @@
                                   {{csrf_field()}}
                                     @component('components.password',[
                                       'name'=>'pass_actual',
-                                      'attributes'=>'required',
+                                      'attributes'=>"required pattern='[^=<> -]{5,30}'",
                                       'label' => 'Contraseña Actual',
                                       'help' => 'Digite Contraseña Actual',
                                       'icon' => 'fa fa-key',
@@ -133,7 +133,7 @@
                                     @endcomponent
                                     @component('components.password',[
                                       'name'=>'pass_new',
-                                      'attributes'=>'required',
+                                      'attributes'=>"required pattern='[^=<> -]{5,30}'",
                                       'label' => 'Contraseña Nueva',
                                       'help' => 'Digite Contraseña Nueva',
                                       'icon' => 'fa fa-key',
@@ -141,7 +141,7 @@
                                     @endcomponent
                                     @component('components.password',[
                                       'name'=>'pass_new_confirmation',
-                                      'attributes'=>'required',
+                                      'attributes'=>"required pattern='[^=<> -]{5,30}'",
                                       'label' => 'Confirmar Contraseña',
                                       'help' => 'Digite para Confirmar Contraseña',
                                       'icon' => 'fa fa-key',

@@ -1,6 +1,6 @@
 <template>
 	<form @submit.prevent="safeExec(store)" novalidate>
-      	<text-input name="name"  label="Nombre" icon="fa fa-user" 
+      	<text-input name="name"  label="Nombre" icon="fa fa-user" pattern="[a-zA-ZáéíóúñÁÉÍÓÚ ]{2,60}"
       		v-model="user.name" v-validate="'required|alpha_spaces|max:30'" data-vv-as="nombre"
       		:error-messages="errors.collect('name')" required/>
 
@@ -8,11 +8,11 @@
       		v-model="user.email" v-validate="'required|email|max:255'" data-vv-as="correo"
       		:error-messages="errors.collect('email')" required/>
                   
-        <text-input type="password" name="password" label="Contraseña" icon="fa fa-key"
+        <text-input type="password" name="password" label="Contraseña" icon="fa fa-key" pattern="[^=<> -]{5,30}"
         	v-model="user.password" v-validate="'required|min:6'" data-vv-as="contraseña"
 			:error-messages="errors.collect('password')" required/>
                   
-        <text-input type="password" name="password_confirmation" label="Confirmar Contraseña" icon="fa fa-key" 
+        <text-input type="password" name="password_confirmation" label="Confirmar Contraseña" icon="fa fa-key" pattern="[^=<> -]{5,30}"
         	v-model="user.password_confirmation" v-validate="{ required: true, confirmed: user.password }"
         	data-vv-as="confirmar contraseña" :error-messages="errors.collect('password')" required/>
 

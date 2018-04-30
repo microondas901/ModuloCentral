@@ -6,9 +6,9 @@
             'icon' => 'fa fa-files', 
             'title' => 'Escenario prueba: ' . $casoPrueba->nombre 
         ])
-
+        
         <div id="app">
-            <input-list :formulario="json" :caso-prueba-id="casoPruebaId" :npruebas="10"></input-list>
+            <input-list :formulario="json" :caso-prueba-id="casoPruebaId" :npruebas="10" :matrix="{{$matrix}}"></input-list>
         </div>
         
             @include('partials.modal-help-evaluador-plataforma-testing')

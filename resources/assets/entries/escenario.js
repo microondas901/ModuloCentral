@@ -28,7 +28,6 @@ new Vue({
             json: [],
             test: {},
             prueba: {},
-
             formErrors: {},
             formErrorsUpdate: {},
             casoPruebaId: window.casoPruebaId,
