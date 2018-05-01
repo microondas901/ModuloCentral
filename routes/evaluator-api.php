@@ -15,7 +15,7 @@ Route::resource('evaluacionesScript','NotaScriptController',[
     ]
 ]);
 
-Route::resource('itemsEvaluados','itemsEvaluadosController',[
+Route::resource('itemsEvaluados','ItemsEvaluadosController',[
      'only' => ['show','store'],
      'parameters' => [
          'itemsEvaluados' => 'item'

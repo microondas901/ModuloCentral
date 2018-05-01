@@ -57,7 +57,7 @@ export default class FiltroItems{
                    do{
                       token =  this.tokens.siguienteToken();   
                    }while(token.identificador != 'T_IDENTIFICADOR');
-                   if(token.atributo != '__construct'){
+                   if(token.atributo != '__construct' && token.atributo != undefined){
                        this.items.push({
                            item : atributo,
                            atributo : token.atributo,

@@ -24,7 +24,7 @@ class ItemsEvaluadosController extends Controller
 
     public function show($id){
        $items = DB::table('TBL_Scripts')
-                    ->join('TBL_ItemsEvaluados','TBL_Scripts.PK_id','=','TBL_itemsEvaluados.FK_scriptId')
+                    ->join('TBL_ItemsEvaluados','TBL_Scripts.PK_id','=','TBL_ItemsEvaluados.FK_scriptId')
                     ->join('TBL_ItemsCodificacion','TBL_ItemsEvaluados.FK_itemId','=','TBL_ItemsCodificacion.PK_id')
                     ->select('*')
                     ->where('TBL_Scripts.PK_id','=',$id)

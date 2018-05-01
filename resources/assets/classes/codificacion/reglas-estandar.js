@@ -193,6 +193,7 @@ export default class ReglasEstandar{
                          .then(axios.spread((a)=>{
                              toastr.success("Script calificado correctamente");
                              $.unblockUI();
+                             location.reload(true);
                          }))
                          .catch(reason => console.log(reason.response.data.errors));  
                    }
