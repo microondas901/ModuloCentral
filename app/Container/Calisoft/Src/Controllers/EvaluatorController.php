@@ -185,39 +185,48 @@ class EvaluatorController extends Controller
         $DiCalificacionPSN = round($CalificacionPSN, 2);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 1, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 1)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total, 'acertadas' => $acertadas, 'calificacion' => $DiCalificacionBDS]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 2, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 2)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total1, 'acertadas' => $acertadas1, 'calificacion' => $DiCalificacionSCH]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 3, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 3)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total2, 'acertadas' => $acertadas2, 'calificacion' => $DiCalificacionTBL]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 4, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 4)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total3, 'acertadas' => $acertadas3, 'calificacion' => $DiCalificacionVWS]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 5, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 5)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total4, 'acertadas' => $acertadas4, 'calificacion' => $DiCalificacionPK]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 6, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 6)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total5, 'acertadas' => $acertadas5, 'calificacion' => $DiCalificacionFK]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 7, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 7)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total6, 'acertadas' => $acertadas6, 'calificacion' => $DiCalificacionPGS]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 8, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 8)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total7, 'acertadas' => $acertadas7, 'calificacion' => $DiCalificacionCTB]);
 
             $sql = DB::table('TBL_CalificacionBd')
-            ->where('FK_TipoNomenclaturaId' , '=', 9, 'and', 'FK_ArchivoBdId', '=', $proyecto->PK_id)
+            ->where('FK_TipoNomenclaturaId' , 9)
+            ->where('FK_ArchivoBdId', $proyecto->sql->PK_id)
             ->update(['total' => $total8, 'acertadas' => $acertadas8, 'calificacion' => $DiCalificacionPSN]);
 
 
