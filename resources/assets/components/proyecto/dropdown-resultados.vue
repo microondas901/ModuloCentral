@@ -6,19 +6,19 @@
         </button>
         <template slot="dropdown">
             <li>
-                <post-form id="modelacion" :action="`/pdf/proyecto/${proyectoId}/modelacion`" label="modelacion"/> 
+                <post-form :id="`mod-${proyectoId}`" :action="`/pdf/proyecto/${proyectoId}/modelacion`" label="modelacion"/> 
             </li>
             <li>
-                <post-form id="plataforma" :action="`/pdf/proyecto/${proyectoId}/plataforma`" label="plataforma"/> 
+                <post-form :id="`plat-${proyectoId}`" :action="`/pdf/proyecto/${proyectoId}/plataforma`" label="plataforma"/> 
             </li>
             <li>
-                <post-form id="codificacion" :action="`/pdf/proyecto/${proyectoId}/codificacion`" label="codificacion"/> 
+                <post-form :id="`cod-${proyectoId}`" :action="`/pdf/proyecto/${proyectoId}/codificacion`" label="codificacion"/> 
             </li>
             <li>
-                <post-form id="basedatos" :action="`/pdf/proyecto/${proyectoId}/basedatos`" label="basedatos"/> 
+                <post-form :id="`bas-${proyectoId}`" :action="`/pdf/proyecto/${proyectoId}/basedatos`" label="basedatos"/> 
             </li>
             <li>
-                <post-form id="total" :action="`/pdf/proyecto/${proyectoId}/total`" label="global"/> 
+                <post-form :id="`tot-${proyectoId}`" :action="`/pdf/proyecto/${proyectoId}/total`" label="global"/> 
             </li>
         </template>
     </dropdown>
