@@ -3,6 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
 </head>
 <body>
     <header class="row">

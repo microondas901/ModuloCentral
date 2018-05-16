@@ -68,7 +68,6 @@
                         {{-- END THEME PANEL --}}
 
                         {{-- BEGIN BREADCRUMB --}}
-                        @include('material.partials.breadcrumb')
                         {{-- END BREADCRUMB --}}
                         {{-- END PAGE HEADER --}}
                         {{-- BEGIN CUSTOM CONTENT --}}

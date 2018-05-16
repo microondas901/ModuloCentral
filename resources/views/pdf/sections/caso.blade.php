@@ -1,4 +1,4 @@
-<table class="table-bordered table">
+<table class="table-bordered table table-condensed">
     <tbody>
         <tr>
             <td>Proposito:</td>

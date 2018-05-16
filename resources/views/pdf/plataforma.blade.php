@@ -6,7 +6,7 @@
         <hr>
     </div>
     @foreach ($casos as $caso)
-        <div class="panel panel-default">
+        <div class="panel panel-default @unless($loop->last) page-break @endunless">
             <div class="panel-heading">
                 {{ $caso->nombre }}
             </div>
