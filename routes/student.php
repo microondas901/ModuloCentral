@@ -26,6 +26,7 @@ Route::get('documentosBd','StudentController@documentosBd')
 Route::get('/plataformaStudent','StudentController@plataforma')
     ->name('plataformaStudent');
 
+    //formulario de prueba
 Route::get('/prueba','StudentController@pruebita');
 
 

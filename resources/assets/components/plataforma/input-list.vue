@@ -54,7 +54,7 @@
                             </span>
                         </td>
                         <td v-else>
-                            <input class="form-control" v-bind="input" :value="values[index]"  v-validate="{ required: true, regex:'^'+matrix[index]+'$'  }"
+                            <input class="form-control" v-bind="input" :value="values[index]"  v-validate="{ required: true, regex: new RegExp(`^${matrix[index]}$`)  }"
                                 @input="values[index] = $event.target.value">
                             <span class="text-danger" v-if="errors.has(input.name)">
                                 {{ errors.first(input.name) }}
@@ -174,17 +174,21 @@ export default {
         });
     },
     async evaluar() {
-        this.cargando = true
-        this.alert = false
-        let total = this.totales;
-        while(total < this.npruebas) {
-            await this.cargar()
-            await this.guardar()
-            total++
-        }
-        this.cargando = false
-        this.alert = false
-        toastr.info("Evaluación Asistida Completada")
+      this.cargando = true;
+      this.alert = false;
+      let total = this.totales;
+      while (total < this.npruebas) {
+        await this.cargar();
+        await this.timeout();
+        await this.guardar();
+        total++;
+      }
+      this.cargando = false;
+      this.alert = false;
+      toastr.info("Evaluación Asistida Completada");
+    },
+    timeout() {
+      return new Promise(resolve => setTimeout(resolve, 1000));
     }
   },
   computed: {
