@@ -6,6 +6,7 @@ use App\Container\Calisoft\Src\Categoria;
 use App\Container\Calisoft\Src\GrupoDeInvestigacion;
 use App\Container\Calisoft\Src\Semillero;
 use App\Container\Calisoft\Src\Proyecto;
+use App\Container\Calisoft\Src\NomenclaturaBd;
 
 class StudentController extends Controller
 {
@@ -72,8 +73,12 @@ class StudentController extends Controller
 
     public function basedatos()
     {
+        $nomenclaturabd = NomenclaturaBd::
+                    select('TBL_TipoNomenclatura.nomenclatura')
+                          ->get();
+
         $proyecto = auth()->user()->proyectos()->first();
-        return view('calisoft.student.student-eval-basedatos', compact('proyecto'));
+        return view('calisoft.student.student-eval-basedatos', compact('proyecto', 'nomenclaturabd')); 
     }
     
     public function evaluacionCodificacion()
