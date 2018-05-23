@@ -46,7 +46,7 @@
                                 $mensajeEncontradas = "Palabras Encontradas: ";
                                 $mensajePropias = "Palabras Encontradas Propias del SQL: ";
                                 $mensajeLineas = "Las palabras estan en la linea: ";
-                                $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'PGS_', 'CTB_', 'PSN_');
+                                $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', '`TBL_', 'VIEWS', 'PRIMARY KEY', 'KEY (`PK_','FOREIGN KEY', 'KEY (`FK_','PGS_', 'CTB_', 'PSN_');
                                 $estandarBD = array();
 
                                 foreach($nomenclaturabd as $nomenbds)
@@ -98,31 +98,7 @@
 
                                 ?>
 
-                                <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                    <th class="text-center"><b>Palabras Reservadas SQL</b></th>
-                                    <th class="text-center"><b>Total</b> </th>
-                                    <th class="text-center"><b>Palabras Encontradas</b></th>
-                                    <th class="text-center"><b>Total</b> </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <td align="center"><?php echo $palabrasAlone; 
-                                    echo "<br><b>Total Palabras Reservadas del SQL: </b><br>";?></td>
-                                    <td align="center"><?php echo $palabrasRepeat; 
-                                    echo "<br>"."<b>".$totalImpostantesBD."</b>";?></td>
-                                    <td align="center"><?php echo $palabraAlone; 
-                                    echo "<br><b>Total Palabras Encontradas del SQL: </b><br>";?></td>
-                                    <td align="center"><?php echo $palabraRepeat; 
-                                    echo "<br>"."<b>".$totalEstandarBD."</b>";?></td>
-                                    </tr>
-                    
-                                </tbody>
-                                </table>
-
-                                <legend></legend>
+                                
                             
                                 <div class="col-md-12">
                                 <table class="table">
@@ -135,6 +111,10 @@
                                     </thead>
 
                                 <?php
+
+                                    $primaryKey = 'KEY (`PK_';
+                                    $table      = '`TBL_';
+                                    $foreignKey = 'KEY (`FK_';
 
                                     $pos = 1;
 
@@ -152,9 +132,14 @@
                                                         <tbody>
                                                             <tr>
                                                             <td width='60%'><b>$linea</b></td>
-                                                            <td width='20%'><b>$pos</b></td>
-                                                            <td width='20%'><b>Bien</b></td>
-                                                            </tr>
+                                                            <td width='20%'><b>$pos</b></td>";
+                                                            if(strpos($primaryKey, $importantesBD[$x]) !== false || strpos($table, $importantesBD[$x]) !== false || strpos($foreignKey, $importantesBD[$x]) !== false){
+                                                                echo "<td width='20%'><span class='glyphicon glyphicon-ok'></span></td>";
+                                                            }else{
+                                                                echo "<td width='20%'><span class='glyphicon glyphicon-remove'></span></td>";
+                                                            }
+
+                                                            echo "</tr>
                                             
                                                         </tbody>
                                                         </table>";

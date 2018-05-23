@@ -155,6 +155,9 @@
                                                         </tbody>
                                                         </table>";
                                             }
+                                            else {
+                                                "X";
+                                            }
                                                 
                                         }
                                         $pos++;
