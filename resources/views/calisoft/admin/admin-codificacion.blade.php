@@ -1,7 +1,11 @@
 @extends('layouts.dash')
 @section('content')
 <div class="col-md-12">
-    @component('components.portlet', ['icon' => 'fa fa-code', 'title' => 'Codificación'])
+    @component('components.portlet', [
+        'icon' => 'fa fa-code', 
+        'title' => 'Codificación',
+        'pdf' => route('pdf.codificacion')
+    ])
       <div id="app">
         <div class="table-responsive">
             <table class="table table-hover table-bordered table-condensed">

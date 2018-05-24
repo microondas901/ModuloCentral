@@ -78,5 +78,20 @@ class PDFController extends Controller
         $payload['proyecto'] = $proyecto;
         $pdf = PDF::loadView('pdf.global', $payload);
         return $pdf->stream('resultados.pdf');
-    }    
+    }
+    
+    public function codificacionTotal(){
+        $proyectos = Proyecto::all();
+        $calificaciones = collect();
+        foreach($proyectos as $proyecto){
+             $calificacion = new Calificaciones($proyecto);
+             $calificaciones->push([
+                 'nombre' => $proyecto->nombre,
+                 'nota'   => $calificacion->codificacion()
+             ]);
+        }
+        $promedio = $calificaciones->avg('nota');    
+        $pdf = PDF::loadview('pdf.codificacion-total',compact('calificaciones','promedio'));
+        return $pdf->stream('total-codificacion.pdf');
+    }
 }
