@@ -46,7 +46,7 @@
                                 $mensajeEncontradas = "Palabras Encontradas: ";
                                 $mensajePropias = "Palabras Encontradas Propias del SQL: ";
                                 $mensajeLineas = "Las palabras estan en la linea: ";
-                                $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', '`TBL_', 'VIEWS', 'PRIMARY KEY', 'KEY (`PK_','FOREIGN KEY', 'KEY (`FK_','PGS_', 'CTB_', 'PSN_');
+                                $importantesBD = array('CREATE DATABASE','CREATE SCHEMA', 'CREATE TABLE', 'VIEWS', 'PRIMARY KEY', 'FOREIGN KEY', 'PGS_', 'CTB_', 'PSN_');
                                 $estandarBD = array();
 
                                 foreach($nomenclaturabd as $nomenbds)
@@ -104,17 +104,24 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                        <th width="60%"><b>Contenido Linea</b> </th>
-                                        <th width="20%"><b>Linea N°</b> </th>
-                                        <th width="20%"><b>Calificación</b> </th>
+                                        <th width="10%"><b><center>Linea N°</center></b> </th>
+                                        <th width="20%"><b><center>Componente</center></b> </th>
+                                        <th width="60%"><b><center>Contenido Linea</center></b> </th>
+                                        <th width="10%"><b><center>Calificación</center></b> </th>
                                         </tr>
                                     </thead>
 
                                 <?php
 
-                                    $primaryKey = 'KEY (`PK_';
-                                    $table      = '`TBL_';
-                                    $foreignKey = 'KEY (`FK_';
+                                    $baseDatos  = 'BDS_';
+                                    $esquemas   = 'SCH_';
+                                    $table      = 'CREATE TABLE `TBL_';
+                                    $vistas     = 'VWS_';
+                                    $primaryKey = 'PRIMARY KEY (`PK_';
+                                    $foreignKey = 'FOREIGN KEY (`FK_';
+                                    $cDescripcion = 'PGS_';
+                                    $cValMoneda  = 'CTB_';
+                                    $cObservaciones = 'PSN_';
 
                                     $pos = 1;
 
@@ -130,13 +137,38 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                            <td width='60%'><b>$linea</b></td>
-                                                            <td width='20%'><b>$pos</b></td>";
-                                                            if(strpos($primaryKey, $importantesBD[$x]) !== false || strpos($table, $importantesBD[$x]) !== false || strpos($foreignKey, $importantesBD[$x]) !== false){
-                                                                echo "<td width='20%'><span class='glyphicon glyphicon-ok'></span></td>";
+                                                            <tr>";
+
+                                                            echo "<td width='10%'><b><center>$pos</center></b></td>";
+
+                                                            if(strpos($linea, "BDS_") !== false){
+                                                                echo "<td width='20%'><b><center>$pos</center>Base de Datos</b></td>";
+                                                            }else if(strpos($linea, "SCH_") !== false){
+                                                                echo "<td width='20%'><b><center>Esquema</center></b></td>";
+                                                            }else if(strpos($linea, "CREATE TABLE") !== false){
+                                                                echo "<td width='20%'><b><center>Tabla</center></b></td>";
+                                                            }else if(strpos($linea, "VWS_") !== false){
+                                                                echo "<td width='20%'><b><center>Vista</center></b></td>";
+                                                            }else if(strpos($linea, "PRIMARY KEY") !== false){
+                                                                echo "<td width='20%'><b><center>Llaves Primaria</center></b></td>";
+                                                            }else if(strpos($linea, "FOREIGN KEY") !== false){
+                                                                echo "<td width='20%'><b><center>Llaves Foranea</center></b></td>";
+                                                            }else if(strpos($linea, "PGS_") !== false){
+                                                                echo "<td width='20%'><b><center>Campo Descripcion</center></b></td>";
+                                                            }else if(strpos($linea, "CTB_") !== false){
+                                                                echo "<td width='20%'><b><center>Campo ValorMoneda</center></b></td>";
+                                                            }else if(strpos($linea, "PSN_") !== false){
+                                                                echo "<td width='20%'><b><center>Campo Observacion</center></b></td>";
+                                                            }
+                                                            echo "<td width='60%'><b><center>$linea</center></b></td>";
+                                                            if(strpos($linea, $baseDatos) !== false || strpos($linea, $esquemas) !== false
+                                                             || strpos($linea, $table) !== false || strpos($linea, $vistas) !== false
+                                                             || strpos($linea, $primaryKey) !== false || strpos($linea, $foreignKey) !== false 
+                                                             || strpos($linea, $cDescripcion) !== false ||  strpos($linea, $cValMoneda) !== false 
+                                                             ||  strpos($linea, $cObservaciones) !== false){
+                                                                echo "<td width='10%' align='center'><span class='glyphicon glyphicon-ok' style='color:green'></span></td>";
                                                             }else{
-                                                                echo "<td width='20%'><span class='glyphicon glyphicon-remove'></span></td>";
+                                                                echo "<td width='10%' align='center'><span class='glyphicon glyphicon-remove' style='color:red'></span></td>";
                                                             }
 
                                                             echo "</tr>
