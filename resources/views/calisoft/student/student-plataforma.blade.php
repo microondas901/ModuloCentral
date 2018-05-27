@@ -63,7 +63,7 @@
                                         maxlength="200">
                         </textarea-input>
                     </div>
-                    <div class="row" v-for="(js, index) in json" v-if="json[0]">
+                    <div class="row" style="margin-top: 5px" v-for="(js, index) in json" v-if="json[0]">
                         <div class="col-sm-6">
                             <select id="tidoIn" :name="'t_' + js.name" class="form-control select2" v-model="fillCasoPrueba.testInput[index]" required>
                                 <option v-for="tipos in tiposInputs" v-bind:value="tipos.PK_id"> @{{ tipos.nombre }}
@@ -71,8 +71,9 @@
                             </select>
                         </div>
                     <div class="col-sm-6">
-                        <input type="button" class="btn red-mint btn-outline btn-block sbold uppercase" 
-                                :value="'Nombre: '+ js.name + ' ID:' + js.id">
+                        <label class="btn red-mint btn-outline btn-block sbold uppercase">
+                            @{{js.name || js.id}}
+                        </label>
                     </div>             
                 </div>
                 <br>
