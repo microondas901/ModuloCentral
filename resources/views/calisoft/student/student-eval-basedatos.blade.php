@@ -22,14 +22,17 @@
 
 
                                     <!-- Modal -->
-                                    <div id="ModalAutomatica" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+                                    <div id="ModalAutomatica" class="modal fade"  role="dialog">
                             <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                 <div class="modal-header bg-info">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
                                     <h4 class="modal-title" align="center"><b>Calificación Nomenclatura Base de datos - Proyecto: "{{$proyecto->nombre}}"</b> </h4>
-                                    
+
                                 </div>
                                 <div class="modal-body" >
                                 <?php
@@ -159,6 +162,8 @@
                                                                 echo "<td width='20%'><b><center>Campo ValorMoneda</center></b></td>";
                                                             }else if(strpos($linea, "PSN_") !== false){
                                                                 echo "<td width='20%'><b><center>Campo Observacion</center></b></td>";
+                                                            }else{
+                                                                echo "<td width='20%'><b><center>Componente</center></b></td>";
                                                             }
                                                             echo "<td width='60%'><b><center>$linea</center></b></td>";
                                                             if(strpos($linea, $baseDatos) !== false || strpos($linea, $esquemas) !== false
