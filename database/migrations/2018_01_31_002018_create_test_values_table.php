@@ -18,7 +18,7 @@ class CreateTestValuesTable extends Migration
             $table->string('valor');
             $table->boolean('valido')->default(false);
             $table->integer('FK_InputType')->unsigned();
-            $table->enum('tipo', ['xss', 'sql','html'])->nullable();
+            $table->string('tipo')->nullable();
         });
     }
 
