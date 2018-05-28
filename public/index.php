@@ -19,6 +19,7 @@
 |
 */
 ini_set('memory_limit', '-1');
+ini_set('max_execution_time', '-1');
 
 require __DIR__.'/../bootstrap/autoload.php';
 
