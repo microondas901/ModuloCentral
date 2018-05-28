@@ -26,12 +26,12 @@ class TestingController extends Controller
     public function testing(Request $request){
         $data = $request->validate([
             'inputs.*' => 'required',
-            'tipo' => 'in:normal,sql,xss'
+            'tipo' => 'in:valido,invalido,sql,xss'
         ]);
         $values = collect();
         $valido = 0;
-        $inter = rand(1, 2);;
-        if($inter==1){
+        
+        
             foreach ($data['inputs'] as $inputType) {
                 $value = '';
                 switch ($data['tipo']) {
@@ -43,35 +43,23 @@ class TestingController extends Controller
                         $value = $this->fakerRepo->getXssValue();
                         $valido = 0;
                         break;
-                    default:
+                    case 'valido':
                             $value = $this->fakerRepo->getValidValue($inputType); // Valor Correcto
                             $valido = 1;
-                        break;
-                }
-                $values->push($value);     
-            }
-        }else{
-            foreach ($data['inputs'] as $inputType) {
-                $value = '';
-                switch ($data['tipo']) {
-                    case 'sql':
-                        $value = $this->fakerRepo->getSqlValue();
-                        $valido = 0;
-                        break;
-                    case 'xss':
-                        $value = $this->fakerRepo->getXssValue();
-                        $valido = 0;
                         break;
                     default:
                         $value = $this->fakerRepo->getInvalidValue($inputType); // Valor incorrecto
                         $valido = 0;
                         break;
                 }
-                $values->push($value);
+                $values->push($value);     
             }
+            return response()->json(compact('values', 'valido'));
         }
-        return response()->json(compact('values', 'valido'));
-    }
+        
+                    
+                
+            
 
 
     /**

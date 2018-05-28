@@ -112,7 +112,7 @@ export default {
   data() {
     return {
       values: [],
-      tipos: ["normal", "sql", "xss"],
+      tipos: ["valido", "invalido", "sql", "xss"],
       selected: -1,
       valido: 0,
       totales: 0,
